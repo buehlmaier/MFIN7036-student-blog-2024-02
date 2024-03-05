@@ -20,9 +20,18 @@ throughout the course as new blog posts become available.
 The list of blog posts below only shows the most recent posts. **To
 view all blog posts, click on "all posts" below.**
 
-Names of student groups (in order of sign-up):
+Names of student groups:
 
-  * 
+  * Coding Master
+  * Financial Language Insights
+  * FINIX
+  * Five Sigma
+  * GPT-5
+  * Next-Level Pro
+  * NLP Give Me Five Team
+  * NLP Power
+  * TextCraft
+  * Word Wizards
 
 The source code of this blog is available on
 [GitHub](https://github.com/buehlmaier/MFIN7036-student-blog-2024-02).
