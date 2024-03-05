@@ -1,5 +1,5 @@
 ---
-Title: Demo Blog Post
+Title: Demo Blog Post (by Group "Super NLP")
 Date: 2022-01-31 01:12
 Category: Progress Report
 Tags: Group Super NLP
