@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>MFIN7036 Student Blog 2024 - Progress Report</title><link href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/" rel="alternate"></link><link href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/feeds/progress-report.atom.xml" rel="self"></link><id>https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/</id><updated>2024-03-03T19:00:00+08:00</updated><entry><title>Use Selenium to webscrape Yahoo Finance Conversation Page</title><link href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/use-selenium-to-webscrape-yahoo-finance-conversation-page.html" rel="alternate"></link><published>2024-03-03T19:00:00+08:00</published><updated>2024-03-03T19:00:00+08:00</updated><author><name>MFIN7036 Students 2024</name></author><id>tag:buehlmaier.github.io,2024-03-03:/MFIN7036-student-blog-2024-02/use-selenium-to-webscrape-yahoo-finance-conversation-page.html</id><summary type="html">&lt;p&gt;By Group "Coding Master"&lt;/p&gt;
-&lt;p&gt;The conversation page of Yahoo Finance provides a platform for investors to share their opinions and insights about stocks and other financial instruments. It is a community-driven forum where users can ask questions, share their experiences and learn from other investors.  &lt;/p&gt;
-&lt;p&gt;In this blog, we aim …&lt;/p&gt;</summary><content type="html">&lt;p&gt;By Group "Coding Master"&lt;/p&gt;
-&lt;p&gt;The conversation page of Yahoo Finance provides a platform for investors to share their opinions and insights about stocks and other financial instruments. It is a community-driven forum where users can ask questions, share their experiences and learn from other investors.  &lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>MFIN7036 Student Blog 2024 - Progress Report</title><link href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/" rel="alternate"></link><link href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/feeds/progress-report.atom.xml" rel="self"></link><id>https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/</id><updated>2024-03-03T19:00:00+08:00</updated><entry><title>Use Selenium to webscrape Yahoo Finance Conversation Page (by Group "Coding Master")</title><link href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/use-selenium-to-webscrape-yahoo-finance-conversation-page-by-group-coding-master.html" rel="alternate"></link><published>2024-03-03T19:00:00+08:00</published><updated>2024-03-03T19:00:00+08:00</updated><author><name>MFIN7036 Students 2024</name></author><id>tag:buehlmaier.github.io,2024-03-03:/MFIN7036-student-blog-2024-02/use-selenium-to-webscrape-yahoo-finance-conversation-page-by-group-coding-master.html</id><summary type="html">&lt;p&gt;The conversation page of Yahoo Finance provides a platform for investors to share their opinions and insights about stocks and other financial instruments. It is a community-driven forum where users can ask questions, share their experiences and learn from other investors.  &lt;/p&gt;
+&lt;p&gt;In this blog, we aim to crawl the comment …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The conversation page of Yahoo Finance provides a platform for investors to share their opinions and insights about stocks and other financial instruments. It is a community-driven forum where users can ask questions, share their experiences and learn from other investors.  &lt;/p&gt;
 &lt;p&gt;In this blog, we aim to crawl the comment data by using Selenium library to simulate browser actions and using the Chrome browser driver for automation. &lt;/p&gt;
 &lt;h2&gt;Import libraries&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;selenium&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;webdriver&lt;/span&gt;
@@ -156,7 +154,234 @@ c. Providing options for the user to filter or sort the comments based on certai
 d. Adapting the scraper to work with other websites or platforms, making it more versatile and useful for different purposes.&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;In summary, this code is a web scraper program that scrapes comments from Yahoo Finance stock discussion pages and saves them to an Excel file. 
-With further enhancements, it can become an even more powerful tool for users interested in analyzing market sentiment and gathering insights from investor discussions.&lt;/p&gt;</content><category term="Progress Report"></category><category term="Group Coding Master"></category></entry><entry><title>Demo Blog Post</title><link href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/demo-blog-post.html" rel="alternate"></link><published>2022-01-31T01:12:00+08:00</published><updated>2022-01-31T01:12:00+08:00</updated><author><name>MFIN7036 Students 2024</name></author><id>tag:buehlmaier.github.io,2022-01-31:/MFIN7036-student-blog-2024-02/demo-blog-post.html</id><summary type="html">&lt;p&gt;By Group "Super NLP"&lt;/p&gt;
+With further enhancements, it can become an even more powerful tool for users interested in analyzing market sentiment and gathering insights from investor discussions.&lt;/p&gt;</content><category term="Progress Report"></category><category term="Group Coding Master"></category></entry><entry><title>Scrape News with GoogleNews and Newspaper3k (by Group "Word Wizards")</title><link href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/scrape-news-with-googlenews-and-newspaper3k-by-group-word-wizards.html" rel="alternate"></link><published>2024-03-03T10:12:00+08:00</published><updated>2024-03-03T10:12:00+08:00</updated><author><name>MFIN7036 Students 2024</name></author><id>tag:buehlmaier.github.io,2024-03-03:/MFIN7036-student-blog-2024-02/scrape-news-with-googlenews-and-newspaper3k-by-group-word-wizards.html</id><summary type="html">&lt;p&gt;This demonstration repository illustrates how to use Python to fetch news articles from Google based on given keywords. Subsequently, the fetched articles are processed by the GPT-3.5 model to generate a concise summary of the key points in the articles.&lt;/p&gt;
+&lt;p&gt;This demonstration utilizes two Python libraries to fetch the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This demonstration repository illustrates how to use Python to fetch news articles from Google based on given keywords. Subsequently, the fetched articles are processed by the GPT-3.5 model to generate a concise summary of the key points in the articles.&lt;/p&gt;
+&lt;p&gt;This demonstration utilizes two Python libraries to fetch the latest news articles from Google and retrieve their full content. The first library is &lt;strong&gt;[GoogleNews]&lt;/strong&gt;, which enables us to search for news articles based on keywords and retrieve their titles and URLs. The second library is &lt;strong&gt;[Newspaper3k]&lt;/strong&gt;, which allows us to download the HTML pages of articles and parse them to extract their textual content.&lt;/p&gt;
+&lt;h3&gt;Import necessary libraries&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;GoogleNews&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;GoogleNews&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;fake_useragent&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;UserAgent&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;newspaper&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;newspaper&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;fulltext&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;re&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Define the keyword to search.&lt;/span&gt;
+&lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Sora&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Get news link from Google News&lt;/h3&gt;
+&lt;p&gt;We search for news related to the Sora topic. The language is English, the region is the United States, and the time is set to one day. We obtain two pages of news data from Google News and save it into a dataframe.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Perform news scraping from Google and extract the result into Pandas dataframe. &lt;/span&gt;
+&lt;span class="n"&gt;googlenews&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GoogleNews&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lang&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;en&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;region&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;US&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;period&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;1d&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;encode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;googlenews&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;clear&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;googlenews&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;googlenews&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_page&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;news_result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;googlenews&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sort&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;news_data_df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;news_result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;But I got an error during the operation:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;lt;urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1129)&amp;gt;
+&amp;lt;urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1129)&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The error typically occurs when there is an issue with SSL certificate verification. This can happen when the Python environment is unable to verify the SSL certificate of the website you are trying to access.&lt;/p&gt;
+&lt;p&gt;To resolve this issue, I use the following solutions:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--upgrade&lt;span class="w"&gt; &lt;/span&gt;certifi
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;ps:&lt;/p&gt;
+&lt;p&gt;If updating &lt;code&gt;certifi&lt;/code&gt; doesn't solve the issue, you can try setting SSL verification to &lt;code&gt;False&lt;/code&gt; when making the request. However, this is not recommended for production code as it bypasses SSL certificate verification.&lt;/p&gt;
+&lt;p&gt;Here's how you can do it:
+```python
+import ssl
+import certifi&lt;/p&gt;
+&lt;p&gt;ssl._create_default_https_context = ssl._create_unverified_context&lt;/p&gt;
+&lt;h1&gt;Your scraping code here&lt;/h1&gt;
+&lt;p&gt;googlenews = GoogleNews(lang='en', region='US', period='1d', encode='utf-8')
+googlenews.clear()
+googlenews.search(keyword)
+googlenews.get_page(2)
+news_result = googlenews.result(sort=True)
+news_data_df = pd.DataFrame.from_dict(news_result)
+```
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;new version of code:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;ssl&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;certifi&lt;/span&gt;
+
+&lt;span class="n"&gt;ssl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_create_default_https_context&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ssl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_create_unverified_context&lt;/span&gt;
+
+
+&lt;span class="n"&gt;googlenews&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GoogleNews&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lang&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;en&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;region&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;US&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;period&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;1d&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;encode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;googlenews&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;clear&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;googlenews&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;googlenews&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_page&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;news_result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;googlenews&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sort&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;news_data_df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;news_result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="c1"&gt;# Display information of dataframe.&lt;/span&gt;
+&lt;span class="n"&gt;news_data_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;here is the output:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;pandas.core.frame.DataFrame&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nl"&gt;RangeIndex&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;entries&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;19&lt;/span&gt;
+&lt;span class="k"&gt;Data&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;total&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="k"&gt;Column&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;Non&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;Null&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;Count&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;Dtype&lt;/span&gt;&lt;span class="w"&gt;         &lt;/span&gt;
+&lt;span class="o"&gt;---&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;------&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;--------------&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-----&lt;/span&gt;&lt;span class="w"&gt;         &lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;non&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;null&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="k"&gt;object&lt;/span&gt;&lt;span class="w"&gt;        &lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="n"&gt;media&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;non&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;null&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="k"&gt;object&lt;/span&gt;&lt;span class="w"&gt;        &lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nc"&gt;date&lt;/span&gt;&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;non&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;null&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="k"&gt;object&lt;/span&gt;&lt;span class="w"&gt;        &lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nc"&gt;datetime&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;non&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;null&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="n"&gt;datetime64&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;ns&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="k"&gt;desc&lt;/span&gt;&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;non&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;null&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="k"&gt;object&lt;/span&gt;&lt;span class="w"&gt;        &lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="n"&gt;link&lt;/span&gt;&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;non&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;null&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="k"&gt;object&lt;/span&gt;&lt;span class="w"&gt;        &lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="n"&gt;img&lt;/span&gt;&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;non&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;null&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="k"&gt;object&lt;/span&gt;&lt;span class="w"&gt;        &lt;/span&gt;
+&lt;span class="nl"&gt;dtypes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;datetime64&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;ns&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;object&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;memory&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;usage&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;1.2&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;KB&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and we can see the dataframe here:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;title&lt;/th&gt;
+&lt;th&gt;media&lt;/th&gt;
+&lt;th&gt;date&lt;/th&gt;
+&lt;th&gt;datetime&lt;/th&gt;
+&lt;th&gt;desc&lt;/th&gt;
+&lt;th&gt;link&lt;/th&gt;
+&lt;th&gt;img&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;OpenAI's Sora isn't the end of the world... yet&lt;/td&gt;
+&lt;td&gt;XDA Developers&lt;/td&gt;
+&lt;td&gt;0 hours ago&lt;/td&gt;
+&lt;td&gt;2024-02-27 10:48:56.943676&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://www.xda-developers.com/sora-isnt-the-end-of-the-world-yet"&gt;Link&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img alt="Image" src="data:image/gif;base64,R0lGODlhAQABAIAAAP//////..."&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Japan Moon lander revives&lt;/td&gt;
+&lt;td&gt;The Manila Times&lt;/td&gt;
+&lt;td&gt;0 hours ago&lt;/td&gt;
+&lt;td&gt;2024-02-27 10:48:56.942748&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://www.manilatimes.net/2024/02/27/news/nation/japan-moon-lander-revives"&gt;Link&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img alt="Image" src="data:image/gif;base64,R0lGODlhAQABAIAAAP//////..."&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;A Sora Rival Raises Millions from NEA&lt;/td&gt;
+&lt;td&gt;The Information&lt;/td&gt;
+&lt;td&gt;1 hours ago&lt;/td&gt;
+&lt;td&gt;2024-02-27 09:48:56.947537&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://www.theinformation.com/articles/a-sora-rival-raises-millions-from-nea"&gt;Link&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img alt="Image" src="data:image/gif;base64,R0lGODlhAQABAIAAAP//////..."&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Dog Adopted After 900 Days in Shelter Returned...&lt;/td&gt;
+&lt;td&gt;Yahoo&lt;/td&gt;
+&lt;td&gt;1 hours ago&lt;/td&gt;
+&lt;td&gt;2024-02-27 09:48:56.946703&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://www.yahoo.com/lifestyle/dog-adopted-900-days-shelter-returned-owners-184629114.html"&gt;Link&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img alt="Image" src="data:image/gif;base64,R0lGODlhAQABAIAAAP//////..."&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Sora's Leap into AI-Driven Video Generation Sp...&lt;/td&gt;
+&lt;td&gt;BNN Breaking&lt;/td&gt;
+&lt;td&gt;1 hours ago&lt;/td&gt;
+&lt;td&gt;2024-02-27 09:48:56.945744&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://bnnbreaking.com/tech/soras-leap-into-ai-driven-video-generation-sparks-controversy"&gt;Link&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img alt="Image" src="data:image/gif;base64,R0lGODlhAQABAIAAAP//////..."&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;as you can see, there are only some links to the news, but what if we want the full text of the paper?&lt;/p&gt;
+&lt;h3&gt;Get the full text of the news from the link&lt;/h3&gt;
+&lt;p&gt;To achieve this goal, we use newspaper3k package, one of the most liked crawler framework on GitHub in Python crawler frameworks, suitable for scraping news web pages.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;ua&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;UserAgent&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;news_data_df_with_text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;headers&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;news_data_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iterrows&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;news_title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="n"&gt;news_media&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;media&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="n"&gt;news_update&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;date&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="n"&gt;news_timestamp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;datetime&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="n"&gt;news_description&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;desc&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="n"&gt;news_link&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;link&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;news_link&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;news_img&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;img&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="c1"&gt;# html = requests.get(news_link).text&lt;/span&gt;
+        &lt;span class="n"&gt;html&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;news_link&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;User-Agent&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;ua&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;chrome&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="n"&gt;timeout&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;
+        &lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fulltext&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Text Content Scraped&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;except&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Text Content Scraped Error, Skipped&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;pass&lt;/span&gt;
+    &lt;span class="n"&gt;news_data_df_with_text&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;news_title&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;news_media&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;news_update&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;news_timestamp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+                                         &lt;span class="n"&gt;news_description&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;news_link&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;news_img&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+
+&lt;span class="n"&gt;news_data_with_text_df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;news_data_df_with_text&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Media&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Update&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Timestamp&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                                                                    &lt;span class="s1"&gt;&amp;#39;Description&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Link&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Image&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Text&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and here is the example result:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Title&lt;/th&gt;
+&lt;th&gt;Media&lt;/th&gt;
+&lt;th&gt;Update&lt;/th&gt;
+&lt;th&gt;Timestamp&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Link&lt;/th&gt;
+&lt;th&gt;Image&lt;/th&gt;
+&lt;th&gt;Text&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;OpenAI's Sora isn't the end of the world... yet&lt;/td&gt;
+&lt;td&gt;XDA Developers&lt;/td&gt;
+&lt;td&gt;0 hours ago&lt;/td&gt;
+&lt;td&gt;2024-02-27 10:48:56.943676&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://www.xda-developers.com/sora-isnt-the-end-of-the-world-yet"&gt;Link&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img alt="Image" src="data:image/gif;base64,R0lGODlhAQABAIAAAP//////..."&gt;&lt;/td&gt;
+&lt;td&gt;This page is not available!&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Japan Moon lander revives&lt;/td&gt;
+&lt;td&gt;The Manila Times&lt;/td&gt;
+&lt;td&gt;0 hours ago&lt;/td&gt;
+&lt;td&gt;2024-02-27 10:48:56.942748&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://www.manilatimes.net/2024/02/27/news/nation/japan-moon-lander-revives"&gt;Link&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img alt="Image" src="data:image/gif;base64,R0lGODlhAQABAIAAAP//////..."&gt;&lt;/td&gt;
+&lt;td&gt;ERROR 404\n\npage not found\n\nClick here to g...&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;A Sora Rival Raises Millions from NEA&lt;/td&gt;
+&lt;td&gt;The Information&lt;/td&gt;
+&lt;td&gt;1 hours ago&lt;/td&gt;
+&lt;td&gt;2024-02-27 09:48:56.947537&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://www.theinformation.com/articles/a-sora-rival-raises-millions-from-nea"&gt;Link&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img alt="Image" src="data:image/gif;base64,R0lGODlhAQABAIAAAP//////..."&gt;&lt;/td&gt;
+&lt;td&gt;Sorry, we weren't able to find that.\n\nIf you...&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</content><category term="Progress Report"></category><category term="Group Word Wizards"></category></entry><entry><title>Demo Blog Post</title><link href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/demo-blog-post.html" rel="alternate"></link><published>2022-01-31T01:12:00+08:00</published><updated>2022-01-31T01:12:00+08:00</updated><author><name>MFIN7036 Students 2024</name></author><id>tag:buehlmaier.github.io,2022-01-31:/MFIN7036-student-blog-2024-02/demo-blog-post.html</id><summary type="html">&lt;p&gt;By Group "Super NLP"&lt;/p&gt;
 &lt;p&gt;This is a demo blog post. Its purpose is to show how to use the basic
 functionality of Markdown in the context of a blog post.&lt;/p&gt;
 &lt;h2&gt;How to Include a Link and Python Code&lt;/h2&gt;
