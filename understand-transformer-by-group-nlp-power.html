@@ -15,18 +15,18 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="Group Super NLP, Progress Report, " />
+<meta name="keywords" content="Group NLP Power, Progress Report, " />
 
-<meta property="og:title" content="Demo Blog Post "/>
-<meta property="og:url" content="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/demo-blog-post.html" />
-<meta property="og:description" content="By Group &#34;Super NLP&#34; This is a demo blog post. Its purpose is to show how to use the basic functionality of Markdown in the context of a blog post. How to Include a Link and Python Code We chose Investing.com to get the whole year data of XRP …" />
+<meta property="og:title" content="Understand transformer (by Group &#34;NLP Power&#34;) "/>
+<meta property="og:url" content="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/understand-transformer-by-group-nlp-power.html" />
+<meta property="og:description" content="Understand Transformer and Bert Model 1.1 Preliminary Concepts Word Embedding Recurrent Neural Network Back Propagation Cosine Similarly 1.2 Attention is all you need The key idea of the Transformer model and the Bert, or Bidirectional Encoder Representations from Transformers, is the attention structure. The structure is designed to …" />
 <meta property="og:site_name" content="MFIN7036 Student Blog 2024" />
 <meta property="og:article:author" content="MFIN7036 Students 2024" />
-<meta property="og:article:published_time" content="2022-01-31T01:12:00+08:00" />
-<meta name="twitter:title" content="Demo Blog Post ">
-<meta name="twitter:description" content="By Group &#34;Super NLP&#34; This is a demo blog post. Its purpose is to show how to use the basic functionality of Markdown in the context of a blog post. How to Include a Link and Python Code We chose Investing.com to get the whole year data of XRP …">
+<meta property="og:article:published_time" content="2024-02-24T00:00:00+08:00" />
+<meta name="twitter:title" content="Understand transformer (by Group &#34;NLP Power&#34;) ">
+<meta name="twitter:description" content="Understand Transformer and Bert Model 1.1 Preliminary Concepts Word Embedding Recurrent Neural Network Back Propagation Cosine Similarly 1.2 Attention is all you need The key idea of the Transformer model and the Bert, or Bidirectional Encoder Representations from Transformers, is the attention structure. The structure is designed to …">
 
-        <title>Demo Blog Post  · MFIN7036 Student Blog 2024
+        <title>Understand transformer (by Group &#34;NLP Power&#34;)  · MFIN7036 Student Blog 2024
 </title>
         <link href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="MFIN7036 Student Blog 2024 - Full Atom Feed" />
 
@@ -68,8 +68,8 @@
 <div class="row-fluid">
     <header class="page-header span10 offset2">
         <h1>
-            <a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/demo-blog-post.html">
-                Demo Blog Post
+            <a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/understand-transformer-by-group-nlp-power.html">
+                Understand transformer (by Group "NLP Power")
             </a>
         </h1>
     </header>
@@ -78,28 +78,87 @@
 <div class="row-fluid">
         <div class="span8 offset2 article-content">
             
-            <p>By Group "Super NLP"</p>
-<p>This is a demo blog post. Its purpose is to show how to use the basic
-functionality of Markdown in the context of a blog post.</p>
-<h2>How to Include a Link and Python Code</h2>
-<p>We chose <a href="http://www.investing.com">Investing.com</a> to get the whole
-year data of XRP and recalculated the return and 30 days volatility.</p>
-<p>The code we use is as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">nltk</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">myvar</span> <span class="o">=</span> <span class="mi">8</span>
-<span class="n">DF</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;XRP-data.csv&#39;</span><span class="p">)</span>
-</code></pre></div>
-
-<h2>How to Include a Quote</h2>
-<p>As a famous hedge fund manager once said:</p>
-<blockquote>
-<p>Fed watching is a great tool to make money. I have been making all my
-gazillions using this technique.</p>
-</blockquote>
-<h2>How to Include an Image</h2>
-<p>Fed Chair Powell is working hard:</p>
-<p><img alt="Picture showing Powell" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/group-Fintech-Disruption_Powell.jpeg"></p>
+            <p><img alt="Picture showing Powell" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/NLP-Power_02_image-1.png"></p>
+<h2>Understand Transformer and Bert Model</h2>
+<h3>1.1 Preliminary Concepts</h3>
+<ul>
+<li>Word Embedding    </li>
+<li>Recurrent Neural Network </li>
+<li>Back Propagation</li>
+<li>Cosine Similarly </li>
+</ul>
+<h3>1.2 Attention is all you need</h3>
+<p>The key idea of the Transformer model and the Bert, or Bidirectional Encoder Representations from Transformers, is the attention structure. The structure is designed to alleviate the information losses in the hidden layers of the recurrent neural network by inspecting the similarities, or the importance of a work token relative to the rest of the materials and itself. This structure enhances the predictability and allows the concurrent calculation in GPU.</p>
+<p><img alt="Picture showing Powell" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/NLP-Power_02_image-2.png"></p>
+<p>Structure: </p>
+<p>For one stack:</p>
+<p>Query, Key, and Value:</p>
+<p>This set is constructed by the sum of the multiple results of the residual connection, seen in section 1.3, assigned with weights and biases. </p>
+<p>The set of Query, Key, and Value is generated by the same way with different weights and biases from the results of the residual connection.</p>
+<p>The idea is the following: </p>
+<ol>
+<li>
+<p>The similarities between the query of the token and the keys of all tokens are inspected (ex. By the cosine similarity or dot product)</p>
+</li>
+<li>
+<p>This similarity is converted to 0-1 as percentage by SoftMax function </p>
+</li>
+<li>
+<p>The value is modified by the percentage mentioned above to represent the importance of the word relative to the rest of the article.</p>
+<p>This structure is applied three times in Transformer model: Encoder, Decoder, and the connection between Encoder and Decoder.</p>
+</li>
+</ol>
+<p>For multiple stacks, the result is just a concat of the stacks.</p>
+<p><img alt="Picture showing Powell" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/NLP-Power_02_image-3.png"></p>
+<h3>1.3 Encoder</h3>
+<p>Encoder is an essential idea in machine learning, describing the process of mapping the inputs into the dimensions we want while keeping essential features and patterns to further process.</p>
+<p>In transformer model here, the encoder workflow is the following:
+1.  The numerical form of the text token from Word Embedding is taken as the information of the words.</p>
+<ol>
+<li>
+<p>The positional encoding is added up to the input word embedding. The positional encoding is a representation of the information of the position of the word in a sentence of in a document. Ex. One way of doing this is to use sin or cos function to transform to a numeric from.</p>
+</li>
+<li>
+<p>The result of the sum of positional encoding and word embedding is the input values for the Attention structure to generate Query, Key, and Value, as stated above.</p>
+</li>
+<li>
+<p>The output of the attention structure is then processed by Residual connection, seen below, to provide finial results of the encoder part. Let’s call this result as residual-encoder.</p>
+</li>
+</ol>
+<p><img alt="Picture showing Powell" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/NLP-Power_02_image-4.png"></p>
+<h4>1.3 Residual connection:</h4>
+<p>The idea of the residual connection is to emphasis the information contained before the convolution process. This idea commonly appears in many variations of the neural network models,  such as in image processing, the RintaNet, FPN structures. </p>
+<p>Here, the structure is designed by adding up the word embedding and positional embedding. </p>
+<p>After the Residual connection, a new set of the key values (we may call it key-encoder), is generated based on residual-encoder values. Theses key values are used later to represent the importance or correlation between the encoders and decoders.</p>
+<p><img alt="Picture showing Powell" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/NLP-Power_02_image-5.png"></p>
+<h3>1.4 decoder</h3>
+<ol>
+<li>
+<p>Decoder starts with the target texts and follows the same structure as the Encoder. We can name the output of the residual connection as the residual-decoder. </p>
+</li>
+<li>
+<p>The new set of the Query values are generated by the residual-decoder values as the same way, (but different weights and bias) in attention structure. </p>
+</li>
+<li>
+<p>The similarity or the correlation between the key values from the residual-encoders and the Query values from the residual-decoders are calculated by the cosine similarity method, or dot product.</p>
+</li>
+<li>
+<p>This similarity modify the new Values and eventually predicts the output, after the softmax function.  </p>
+</li>
+</ol>
+<h3>1.5 Bert and the pre trained model – Finbert</h3>
+<p>Bert model, or Bidirectional Encoder Representations from Transformers only takes the encoder part of the Transformer structure, while the Chatgpt only takes the decoder part of the transformer structure. The Bert model can be downloaded in Github via: https://github.com/google-research/bert?tab=readme-ov-file. The Bert model highlights the functions: mask language model to predict mask words, and the Next Sentence Prediction to predict the sequence of the sentences.</p>
+<p>One popular pre trained model of Bert in financial field is Finbert. It has 838,720 Downloads last month (2024.1). This model is available via: https://huggingface.co/ProsusAI/finbert and https://github.com/ProsusAI/finBERT?tab=readme-ov-file. </p>
+<h3>Papers and Resources:</h3>
+<p>[1]. Vaswani, Ashish, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Lukasz Kaiser, and Illia Polosukhin. 2017. “Attention Is All You Need.” ArXiv.org. June 12, 2017. https://arxiv.org/abs/1706.03762.</p>
+<p>[2]. CMU. Accessed February 23, 2024. 
+http://www.cs.cmu.edu/~02251/recitations/recitation_deep_learning.pdf.</p>
+<p>[3]. Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2018. “BERT: Pre-Training of Deep Bidirectional Transformers for Language 
+Understanding.” ArXiv.org. October 11, 2018. https://arxiv.org/abs/1810.04805.</p>
+<p>[4]. “Google-Research/Bert.” 2024. GitHub. January 23, 2024. https://github.com/google-research/bert?tab=readme-ov-file.</p>
+<p>[5]. “ProsusAI/Finbert · Hugging Face.” n.d. Huggingface.co. https://huggingface.co/ProsusAI/finbert.</p>
+<p>[6]. “ProsusAI/FinBERT.” 2024. GitHub. February 22, 2024. https://github.com/ProsusAI/finBERT?tab=readme-ov-file.</p>
+<p>[7]. “Transformer Neural Networks, ChatGPT’s Foundation, Clearly Explained!!!” n.d. Www.youtube.com. Accessed February 23, 2024. https://www.youtube.com/watch?v=zxQyTK8quyY&amp;list=WL&amp;index=2.</p>
 
 
              
@@ -118,13 +177,13 @@ gazillions using this technique.</p>
         </div>
         <section id="article-sidebar" class="span2">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2022-01-31T01:12:00+08:00">Mon 31 January 2022</time>
+            <time itemprop="dateCreated" datetime="2024-02-24T00:00:00+08:00">Sat 24 February 2024</time>
             <h4>Category</h4>
             <a class="category-link" href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/categories.html#progress-report-ref">Progress Report</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/tags.html#group-super-nlp-ref">Group Super NLP
-                    <span class="superscript">1</span>
+                <li><a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/tags.html#group-nlp-power-ref">Group NLP Power
+                    <span class="superscript">2</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
