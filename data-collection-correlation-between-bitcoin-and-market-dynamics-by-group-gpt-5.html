@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/theme/css/custom.css" media="screen">
+
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+        <meta name="author" content="MFIN7036 Students 2024" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="Group GPT-5, Progress Report, " />
+
+<meta property="og:title" content="Data Collection: Correlation Between Bitcoin and Market Dynamics (by Group &#34;GPT-5&#34;) "/>
+<meta property="og:url" content="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/data-collection-correlation-between-bitcoin-and-market-dynamics-by-group-gpt-5.html" />
+<meta property="og:description" content="Our goal of the project is to see the correlation between the price of crypto and the market sentiment. Since crypto has little physical asset as pricing basis, theoretically the price is valued based on the market consensus. Thus, the market sentiment is the major determining factor in this case …" />
+<meta property="og:site_name" content="MFIN7036 Student Blog 2024" />
+<meta property="og:article:author" content="MFIN7036 Students 2024" />
+<meta property="og:article:published_time" content="2024-03-01T13:00:00+08:00" />
+<meta name="twitter:title" content="Data Collection: Correlation Between Bitcoin and Market Dynamics (by Group &#34;GPT-5&#34;) ">
+<meta name="twitter:description" content="Our goal of the project is to see the correlation between the price of crypto and the market sentiment. Since crypto has little physical asset as pricing basis, theoretically the price is valued based on the market consensus. Thus, the market sentiment is the major determining factor in this case …">
+
+        <title>Data Collection: Correlation Between Bitcoin and Market Dynamics (by Group &#34;GPT-5&#34;)  · MFIN7036 Student Blog 2024
+</title>
+        <link href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="MFIN7036 Student Blog 2024 - Full Atom Feed" />
+
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/"><span class=site-name>MFIN7036 Student Blog 2024</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       https://buehlmaier.github.io/MFIN7036-student-blog-2024-02
+                                    >Home</a>
+                                </li>
+                                <li ><a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/categories.html">Categories</a></li>
+                                <li ><a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/tags.html">Tags</a></li>
+                                <li ><a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/data-collection-correlation-between-bitcoin-and-market-dynamics-by-group-gpt-5.html">
+                Data Collection: Correlation Between Bitcoin and Market Dynamics (by Group "GPT-5")
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+            
+            <p>Our goal of the project is to see the correlation between the price of crypto and the market sentiment. Since crypto has little physical asset as pricing basis, theoretically the price is valued based on the market consensus. Thus, the market sentiment is the major determining factor in this case. Here, we choose bitcoin (BTC) as our target because it is the most popular crypto and has the most trading volume. So, the price can be manipulated minimally. Besides, to measure the market sentiment of the BTC, we initially choose three major forums as our analyzing sample, reddit and bitcoin talk and X (twitter). However, X has employed anti-crawler since the acquisition by Elon Mask. So we finally choose reddit and bitcoin talk as the data source.</p>
+<h2>Data of BTC Price</h2>
+<p>We directly download the data of BTC price from Yahoo Finance and saved as .csv file.</p>
+<h2>Reddit</h2>
+<p>Reddit is a vast social website, founded in 2005 by Steve Huffman and Alexis Ohanian. On Reddit, users can submit content such as links, text posts, and images, which are then voted on by other users. It is also one of the most famous and active communities in the world for investors and others because of the vast number of users of the website. Thus, it is an ideal source for us to judge the market sentiment of BTC. Here, we assume that the major information is included in the headlines. So we get the data of reddit from direct search of BTC and bitcoin.</p>
+<p>In the following code, our group scrapes the data from the website reddit. Through recursive calls and time intervals, the code is capable of navigating through multiple pages of search results. Our group scraped all the posts with the title with key words "BTC" and "Bitcoin" and the datetime of the posts for sentiment analysis model.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+
+<span class="k">def</span> <span class="nf">parse_time</span><span class="p">(</span><span class="n">gmt_time</span><span class="p">):</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromisoformat</span><span class="p">(</span><span class="n">gmt_time</span><span class="p">)</span>
+    <span class="n">standard_time</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">standard_time</span>
+
+
+<span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="n">title_list</span><span class="p">,</span> <span class="n">publish_time_list</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">title_list</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">publish_time_list</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">title</span><span class="p">,</span> <span class="n">tim</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">title_list</span><span class="p">,</span> <span class="n">publish_time_list</span><span class="p">):</span>
+        <span class="n">F</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">parse_time</span><span class="p">(</span><span class="n">tim</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;：&#39;</span> <span class="o">+</span> <span class="n">title</span><span class="p">)</span>
+        <span class="n">F</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">-----------</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">F</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="n">html</span><span class="p">):</span>
+    <span class="n">content_list</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&amp;quot;title&amp;quot;:&amp;quot;(.*?)&amp;quot;&#39;</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
+    <span class="n">next_page_url</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;loading=&quot;lazy&quot; src=&quot;(.*?)&quot;&gt;&#39;</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
+    <span class="n">publish_time_list</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&lt;faceplate-timeago.*?ts=&quot;(.*?)&quot;&#39;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">html</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">content_list</span><span class="p">:</span>
+        <span class="n">write</span><span class="p">(</span><span class="n">content_list</span><span class="p">,</span> <span class="n">publish_time_list</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">next_page_url</span><span class="p">:</span>
+        <span class="n">next_page_url</span> <span class="o">=</span> <span class="s1">&#39;https://www.reddit.com&#39;</span> <span class="o">+</span> <span class="n">next_page_url</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;amp;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">next_page_url</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">-----------&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">next_page_url</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No more pages ~&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_all_title</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">next_page_url</span> <span class="o">=</span> <span class="n">extract</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">next_page_url</span><span class="p">:</span>
+        <span class="n">get_all_title</span><span class="p">(</span><span class="n">next_page_url</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;bitcoin&#39;</span>  <span class="c1"># 搜索内容</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s1">.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">F</span><span class="p">:</span>
+        <span class="n">get_all_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;https://www.reddit.com/search/?q=</span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<h2>Bitcoin Talk</h2>
+<p>Bitcoin Talk is an online forum dedicated to Bitcoin and related cryptocurrencies. It is one of the oldest and most influential forums within the cryptocurrency community. The site is widely regarded as a platform for cryptocurrency enthusiasts, miners, developers, and investors to exchange information, discuss technical issues, share news, and promote new projects. Here the code shows how we scrap the data from bitcoin talk.</p>
+<p>In the following code, our group scrapes the data from the website Bitcoin Talk. Our group gets into the Bitcoin Forum area of the website and scrapes the headlines of all the posts. The code is used to extract post titles and date information from different pages of the forum, including the information in the headlines and the date time of the posts, which are all saved in the final_list so that the texts can be used to in the market sentiment analysis model.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># CREATE EMPTY LIST TO ADD POSTS AND DATES TO</span>
+<span class="n">final_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># SCRAPER BEGINS HERE</span>
+    <span class="c1"># bitcointalk subforums end in this format, with the number before the decimal</span>
+    <span class="c1"># represents the forum id, and the number after it represents a page</span>
+    <span class="c1"># x.40 is page 2 on forum x, x.80 is page 3, x.120 is page 4, etc.</span>
+
+<span class="n">url_end</span> <span class="o">=</span> <span class="s1">&#39;1.40&#39;</span>
+
+<span class="k">while</span> <span class="n">url_end</span> <span class="o">!=</span> <span class="s1">&#39;1.47760&#39;</span><span class="p">:</span> <span class="c1">#set this to whatever number the LAST page you want to scrape is （1.47760 is the first page of the forum in 2024)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://bitcointalk.org/index.php?board=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url_end</span><span class="p">)</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">page_content</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">content</span><span class="p">,</span><span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+
+    <span class="c1"># GET POST TITLES</span>
+    <span class="n">all_td</span> <span class="o">=</span> <span class="n">page_content</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;td&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;windowbg&#39;</span><span class="p">})</span>
+    <span class="n">cleanlist</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">all_td</span><span class="p">[::</span><span class="mi">3</span><span class="p">]:</span>  <span class="c1"># select only every third row because some empty rows have this class</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">getText</span><span class="p">()</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;«&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;»&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; </span><span class="se">\xa0</span><span class="s1">All &#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; 1 2&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; ... &#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">cleanlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+    <span class="c1">#GET POST DATES</span>
+    <span class="n">all_date</span> <span class="o">=</span> <span class="n">page_content</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;td&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;windowbg2 lastpostcol&#39;</span><span class="p">})</span>
+    <span class="n">cleanlist2</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">all_date</span><span class="p">:</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">getText</span><span class="p">()</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;by&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">realtext</span> <span class="o">=</span> <span class="n">text</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">cleanlist2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">realtext</span><span class="p">)</span>
+
+    <span class="c1"># CREATE FUNCTION TO MERGE LISTS</span>
+    <span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="n">list1</span><span class="p">,</span> <span class="n">list2</span><span class="p">):</span> 
+        <span class="n">merged_list</span> <span class="o">=</span> <span class="p">[(</span><span class="n">list1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">list2</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">list1</span><span class="p">))]</span> 
+        <span class="k">return</span> <span class="n">merged_list</span> 
+    <span class="n">merged</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="n">cleanlist</span><span class="p">,</span> <span class="n">cleanlist2</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">merged</span><span class="p">:</span>
+        <span class="n">final_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+
+    <span class="c1">#SET TO NEXT URL TO SCRAPE</span>
+    <span class="n">url_end</span> <span class="o">=</span> <span class="n">url_end</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">url_end0</span> <span class="o">=</span> <span class="n">url_end</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">url_end1</span> <span class="o">=</span> <span class="n">url_end</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">url_end1</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">url_end1</span><span class="p">)</span>
+    <span class="n">url_end1</span> <span class="o">+=</span> <span class="mi">40</span>
+    <span class="n">url_end</span> <span class="o">=</span> <span class="n">url_end0</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">url_end1</span><span class="p">)</span>
+
+    <span class="c1">#PRINT FEEDBACK AND PAUSE FOR SERVER RULES</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Processing, page scraped, new URL: &quot;</span> <span class="o">+</span> <span class="n">url_end</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+
+
+             
+ 
+            
+            
+            
+
+
+
+
+
+
+
+            <hr/>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2024-03-01T13:00:00+08:00">Fri 01 March 2024</time>
+            <h4>Category</h4>
+            <a class="category-link" href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/categories.html#progress-report-ref">Progress Report</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/tags.html#group-gpt-5-ref">Group GPT-5
+                    <span class="superscript">1</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+    <a href="https://github.com/buehlmaier/MFIN7036-student-blog-2024-02" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="GitHub" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1B1817"/><path fill="#fff" d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+    </a>
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
+</html>
