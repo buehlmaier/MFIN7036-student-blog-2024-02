@@ -167,8 +167,8 @@
 <p>At the beginning, we tried to use both the <strong>body text of both posts and comments</strong> to analyze, but after we browse some posts, we found that many of them:</p>
 <ul>
 <li><strong>Too long:</strong> some posts contains more than 10k words</li>
-<li><strong>Provide limited sentimental information:</strong> some posts provide research data or news which are relatively neutral in sentiment</li>
-<li><strong>Only a picture/video in the post(meme):</strong> which we cannot obtain any textual data from the posts</li>
+<li><strong>Provide limited sentiment information:</strong> some posts provide research data or news which are relatively neutral in sentiment</li>
+<li><strong>Only a picture/video in the post (meme):</strong> which we cannot obtain any textual data from the posts</li>
 </ul>
 <p>As such, we decide to use only post title to identify topics, and comment body of each post for the sentiment analysis.</p>
 <h4>2. Choice of Subreddits</h4>
@@ -176,10 +176,10 @@
 <p>We decide to abort this idea and turn to "r/wallstreetbets", which consists tons of discussion on stock markets. Then, we choice the specific topics to collect posts and comments.</p>
 <h2>Problems to be solved</h2>
 <h4>1. USELESS Comments</h4>
-<p>When fetching data via Reddit API, there are some unstructured comments that are irrelated to posts, like this: </p>
+<p>When fetching data via Reddit API, there are some unstructured comments that are unrelated to posts, like this: </p>
 <blockquote>
 <p><code>'\n**User Report**| | | |\n:--|:--|:--|:--\n**Total Submissions** | 1 | **First Seen In WSB** | 5 months ago\n**Total Comments** | 40 | **Previous Best DD** | \n**Account Age** | 3 years | | \n\n[**Join WSB Discord**](http://discord.gg/wsbverse)'</code>
-These appear to be garbage messages sent by robot, which could generate noise for our analysis. Thus we intend to use regular expression to filter the noisy data. </p>
+These appear to be messages sent by robot, which could generate noise for our analysis. Thus we intend to use regular expression to filter the noisy data. </p>
 </blockquote>
 <h4>2. EMOJI</h4>
 <p>The emojis can better reflect the one's sentiment and attitude. However, the derived emojis appear in the following format, where we cannot extract any meaningful textual information. Another consideration is, the emotional meanings of emojis can vary depending on culture, context, and personal interpretation.</p>
@@ -188,7 +188,7 @@ These appear to be garbage messages sent by robot, which could generate noise fo
 </blockquote>
 <p>We may explore several methods to deal with emojis:
 - Create a emoji map (use of regular expression) for mapping the Unicode emojis to the related emotion
-- Use the python package <strong>demoji</strong> to remove emoji in comments</p>
+- Use the Python package <strong>demoji</strong> to remove emoji in comments</p>
 
 
              
