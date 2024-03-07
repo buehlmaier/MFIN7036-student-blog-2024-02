@@ -93,8 +93,8 @@ In our project, we identify the following terms as topics. Both stock prices and
 At the beginning, we tried to use both the **body text of both posts and comments** to analyze, but after we browse some posts, we found that many of them:
 
 - **Too long:** some posts contains more than 10k words
-- **Provide limited sentimental information:** some posts provide research data or news which are relatively neutral in sentiment
-- **Only a picture/video in the post(meme):** which we cannot obtain any textual data from the posts
+- **Provide limited sentiment information:** some posts provide research data or news which are relatively neutral in sentiment
+- **Only a picture/video in the post (meme):** which we cannot obtain any textual data from the posts
 
 As such, we decide to use only post title to identify topics, and comment body of each post for the sentiment analysis.
 
@@ -110,11 +110,11 @@ We decide to abort this idea and turn to "r/wallstreetbets", which consists tons
 
 #### 1. USELESS Comments
 
-When fetching data via Reddit API, there are some unstructured comments that are irrelated to posts, like this: 
+When fetching data via Reddit API, there are some unstructured comments that are unrelated to posts, like this: 
    > ```
    > '\n**User Report**| | | |\n:--|:--|:--|:--\n**Total Submissions** | 1 | **First Seen In WSB** | 5 months ago\n**Total Comments** | 40 | **Previous Best DD** | \n**Account Age** | 3 years | | \n\n[**Join WSB Discord**](http://discord.gg/wsbverse)'
    > ```
-These appear to be garbage messages sent by robot, which could generate noise for our analysis. Thus we intend to use regular expression to filter the noisy data. 
+These appear to be messages sent by robot, which could generate noise for our analysis. Thus we intend to use regular expression to filter the noisy data. 
 
 #### 2. EMOJI
 The emojis can better reflect the one's sentiment and attitude. However, the derived emojis appear in the following format, where we cannot extract any meaningful textual information. Another consideration is, the emotional meanings of emojis can vary depending on culture, context, and personal interpretation.
@@ -125,4 +125,4 @@ The emojis can better reflect the one's sentiment and attitude. However, the der
 
 We may explore several methods to deal with emojis:
 - Create a emoji map (use of regular expression) for mapping the Unicode emojis to the related emotion
-- Use the python package **demoji** to remove emoji in comments
+- Use the Python package **demoji** to remove emoji in comments
