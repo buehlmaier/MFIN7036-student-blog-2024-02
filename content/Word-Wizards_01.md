@@ -1,6 +1,6 @@
 ---
 Title: Scrape News with GoogleNews and Newspaper3k (by Group "Word Wizards")
-Date: 2024-03-3 10:12
+Date: 2024-03-03 10:12
 Category: Progress Report
 Tags: Group Word Wizards
 ---
