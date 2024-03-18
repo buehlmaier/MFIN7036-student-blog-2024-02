@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/theme/css/custom.css" media="screen">
+
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+        <meta name="author" content="MFIN7036 Students 2024" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="Group Five Sigma, Progress Report, " />
+
+<meta property="og:title" content="Seeking Curve Trade Opportunities Based on FOMC minutes 2 (by Group &#34;Five Sigma&#34;) "/>
+<meta property="og:url" content="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/seeking-curve-trade-opportunities-based-on-fomc-minutes-2-by-group-five-sigma.html" />
+<meta property="og:description" content="By Group &#34;Five Sigma&#34; This blog aims to explore curve trade opportunities in U.S. Treasuries by analyzing sentiments extracted from Federal Open Market Committee (FOMC) minutes. In the first part, we meticulously refined our sentiment score calculation process to address encountered challenges building upon the methodology outlined in our …" />
+<meta property="og:site_name" content="MFIN7036 Student Blog 2024" />
+<meta property="og:article:author" content="MFIN7036 Students 2024" />
+<meta property="og:article:published_time" content="2024-03-18T22:00:00+08:00" />
+<meta name="twitter:title" content="Seeking Curve Trade Opportunities Based on FOMC minutes 2 (by Group &#34;Five Sigma&#34;) ">
+<meta name="twitter:description" content="By Group &#34;Five Sigma&#34; This blog aims to explore curve trade opportunities in U.S. Treasuries by analyzing sentiments extracted from Federal Open Market Committee (FOMC) minutes. In the first part, we meticulously refined our sentiment score calculation process to address encountered challenges building upon the methodology outlined in our …">
+
+        <title>Seeking Curve Trade Opportunities Based on FOMC minutes 2 (by Group &#34;Five Sigma&#34;)  · MFIN7036 Student Blog 2024
+</title>
+        <link href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="MFIN7036 Student Blog 2024 - Full Atom Feed" />
+
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/"><span class=site-name>MFIN7036 Student Blog 2024</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       https://buehlmaier.github.io/MFIN7036-student-blog-2024-02
+                                    >Home</a>
+                                </li>
+                                <li ><a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/categories.html">Categories</a></li>
+                                <li ><a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/tags.html">Tags</a></li>
+                                <li ><a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/seeking-curve-trade-opportunities-based-on-fomc-minutes-2-by-group-five-sigma.html">
+                Seeking Curve Trade Opportunities Based on FOMC minutes 2 (by Group "Five Sigma")
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+            
+            <p>By Group "Five Sigma"</p>
+<p>This blog aims to explore curve trade opportunities in U.S. Treasuries by analyzing sentiments extracted from Federal Open Market Committee (FOMC) minutes. In the first part, we meticulously refined our sentiment score calculation process to address encountered challenges building upon the methodology outlined in our previous blog. After experimenting with three different methods for calculating sentiment scores, we derived results suitable for regression analysis. In the second part, we conducted regression analyses separately for the short and long ends of the yield curve. We elucidate the rationale behind selecting independent variables and detail how we accounted for them in our regression models using the Ordinary Least Squares methodology. Additionally, we explore other variables influencing 10-year yields and conclude that sentiment scores alone may not adequately explain fluctuations in long-term yields. Overall, our findings suggest that while sentiment analysis proves valuable for forecasting the short end of the yield curve, additional factors beyond sentiment are crucial for comprehensively understanding and predicting movements in long-term Treasury yields.</p>
+<h1>Part I：Sentiment Score Calculation</h1>
+<p>To construct an appropriate measurement that reflects the sentiment information behind FOMC minutes, and then makes predictions about the interest rate fluctuation indirectly, we tried 3 methods - <strong>Keras</strong>, <strong>TextBlob</strong> and <strong>Pysentiment2</strong> to compute polarity scores showing the sentiment tendency of the Federal Reserve on interest rate policy.</p>
+<h2>1. Procedure</h2>
+<p>The following is a flowchart of our attempt to calculate the sentiment score for each FOMC minute. First, we clean the text content, then split each minute into sentences, and call a module to calculate the sentiment score for each sentence. Afterward, we weight and average the scores to obtain the sentiment score for each minute. Each step of this process will be further discussed in the following sections, where we will detail the specific implementation steps required for the code.</p>
+<p><img alt="Procedure" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/Five-Sigma_02_Procedure.png"></p>
+<h2>2. Methods to Compute Sentiment Scores of Sentences</h2>
+<h3>2.1 Keras</h3>
+<h4>Introduction</h4>
+<p>Keras is a Python library for building and training deep learning models, offering advanced neural network APIs. It supports various types of models, including Convolutional Neural Networks (CNNs) and Recurrent Neural Networks (RNNs). Keras stands out for its flexibility and scalability, enabling users to construct complex neural network architectures and train them efficiently on different hardware platforms. Widely applied in processing diverse data like images, audio, and text, Keras plays a crucial role in the field of deep learning. Leveraging Keras' adeptness at capturing intricate structures in input data, we can perform quantitative analysis of FOMC minutes and their underlying sentiment structures.</p>
+<h4>Process</h4>
+<p><strong>(1) Preparation</strong>
+In the initial phase, we assemble a comprehensive dataset comprising text samples paired with their corresponding sentiment labels. For instance, a sample might be labeled as positive or negative based on its sentiment. This dataset is then split into distinct subsets for training, validation, and testing.
+Then we load the pretrained <strong>Word2Vec</strong> model and use it to obtain the embedding matrix for words. This embedding matrix will be utilized in the Embedding layer of the model to map words from the text data to vector representations. By mapping words to the corresponding word vectors in the Word2Vec model, we can obtain semantic information for words and use them as inputs to the neural network model.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Assemble the dataset comprising text samples and their corresponding sentiment labels</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">KeyedVectors</span>
+
+<span class="c1"># Load pretrained Word2Vec embeddings</span>
+<span class="k">def</span> <span class="nf">load_pretrained_word2vec_embeddings</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+    <span class="n">word2vec_model</span> <span class="o">=</span> <span class="n">KeyedVectors</span><span class="o">.</span><span class="n">load_word2vec_format</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">embedding_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">word_index</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word2vec_model</span><span class="p">:</span>
+            <span class="n">embedding_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">word2vec_model</span><span class="p">[</span><span class="n">word</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">embedding_matrix</span>
+
+<span class="c1"># Replace &#39;file_path&#39; with the actual path to your Word2Vec model file</span>
+<span class="n">word2vec_file_path</span> <span class="o">=</span> <span class="s1">&#39;path/to/word2vec_model.bin&#39;</span>
+<span class="n">embedding_matrix</span> <span class="o">=</span> <span class="n">load_pretrained_word2vec_embeddings</span><span class="p">(</span><span class="n">word2vec_file_path</span><span class="p">)</span>
+
+<span class="c1">#Sample</span>
+<span class="n">sentences</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;I loved the NLP!&quot;</span><span class="p">,</span> <span class="s2">&quot;The result was terrible.&quot;</span><span class="p">,</span> <span class="s2">&quot;The method was average.&quot;</span><span class="p">]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># 1 for positive sentiment, 0 for negative sentiment</span>
+</code></pre></div>
+
+<p><strong>(2) Text Processing</strong> 
+Text processing involves removing noise, special characters, and stop words from the text to ensure the data is clean and ready for analysis. The detailed process can be found in the Text Preprocessing section of our previous blog.
+Then, we convert the textual tokens into numerical representations. Initially, we read the cleaned text data from a CSV file and store it in a DataFrame. The text is tokenized, breaking it down into individual words or tokens, and parameters such as vocabulary size and maximum sentence length are defined. Using the Tokenizer class from the Keras library, we convert the text tokens into numerical sequences, with each word represented by a unique integer based on its frequency in the corpus. These sequences are padded to a fixed length to ensure uniform input size, crucial for neural network processing.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Convert the textual tokens into numerical representations</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing.text</span> <span class="kn">import</span> <span class="n">Tokenizer</span>
+<span class="kn">from</span> <span class="nn">keras.preprocessing.sequence</span> <span class="kn">import</span> <span class="n">pad_sequences</span>
+
+<span class="c1"># Tokenize the sentences and pad them to a fixed length</span>
+<span class="n">vocab_size</span> <span class="o">=</span> <span class="mi">10000</span>  <span class="c1"># Size of the vocabulary</span>
+<span class="n">max_length</span> <span class="o">=</span> <span class="mi">20</span>  <span class="c1"># Maximum length of input sentences</span>
+
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">num_words</span><span class="o">=</span><span class="n">vocab_size</span><span class="p">)</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">fit_on_texts</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span>
+<span class="n">sequences</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">texts_to_sequences</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span>
+<span class="n">padded_sequences</span> <span class="o">=</span> <span class="n">pad_sequences</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">maxlen</span><span class="o">=</span><span class="n">max_length</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>(3) Model Building</strong>
+In this stage, we construct the model architecture by adding layers such as embedding layers, LSTM/GRU layers, or convolutional layers. We experiment with different architectures, layer types, and hyperparameters to identify the optimal configuration for our model.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Construct the CNN model architecture</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Embedding</span><span class="p">,</span> <span class="n">Conv1D</span><span class="p">,</span> <span class="n">GlobalMaxPooling1D</span><span class="p">,</span> <span class="n">Dense</span>
+
+<span class="c1"># Load pretrained word embeddings (Word2Vec)</span>
+<span class="n">embedding_dim</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># Dimension of word embeddings</span>
+<span class="c1"># Load pretrained word embeddings from file and update the embedding matrix</span>
+<span class="n">embedding_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="p">)</span>
+<span class="c1"># Number of filters in convolutional layer</span>
+<span class="n">num_filters</span> <span class="o">=</span> <span class="mi">128</span>
+
+<span class="c1"># Create the CNN model with pretrained word embeddings</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="p">[</span><span class="n">embedding_matrix</span><span class="p">],</span> <span class="n">input_length</span><span class="o">=</span><span class="n">max_length</span><span class="p">,</span> <span class="n">trainable</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Conv1D</span><span class="p">(</span><span class="n">num_filters</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">GlobalMaxPooling1D</span><span class="p">())</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">))</span>
+</code></pre></div>
+
+<p><strong>(4) Model Training</strong>
+The model is trained on the training dataset using the <code>fit()</code> function. During training, we fine-tune parameters such as batch size, number of epochs, and learning rate to enhance model performance. We closely monitor the training process and evaluate the performance of model on the validation set to ensure its effectiveness.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Compile and train the model</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">padded_sequences</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">labels</span><span class="p">),</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>(5) Model Prediction</strong>
+Once the model is trained, we preprocess new data in the same manner as the training data. The preprocessed data is then fed into the model to obtain predictions. This process involves importing relevant modules and functions, tokenizing the text to form a sequence, calling the LSTM model function, and adjusting parameters for optimal performance. Finally, we input test texts to make predictions, leveraging the predictive capabilities of our trained model.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Preprocess new data and make predictions</span>
+<span class="n">test_sentences</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;The movie was great!&quot;</span><span class="p">,</span> <span class="s2">&quot;I didn&#39;t enjoy it.&quot;</span><span class="p">]</span>
+<span class="n">test_sequences</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">texts_to_sequences</span><span class="p">(</span><span class="n">test_sentences</span><span class="p">)</span>
+<span class="n">padded_test_sequences</span> <span class="o">=</span> <span class="n">pad_sequences</span><span class="p">(</span><span class="n">test_sequences</span><span class="p">,</span> <span class="n">maxlen</span><span class="o">=</span><span class="n">max_length</span><span class="p">)</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">padded_test_sequences</span><span class="p">)</span>
+
+<span class="c1"># Print the results</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">test_sentences</span><span class="p">):</span>
+    <span class="n">sentiment</span> <span class="o">=</span> <span class="s2">&quot;positive&quot;</span> <span class="k">if</span> <span class="n">predictions</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span> <span class="k">else</span> <span class="s2">&quot;negative&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sentence: </span><span class="si">{</span><span class="n">sentence</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sentiment: </span><span class="si">{</span><span class="n">sentiment</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h3>2.2. TextBlob</h3>
+<h4>Introduction</h4>
+<p>TextBlob is a Python library for natural language processing (NLP) tasks, offering simple yet powerful tools for tasks such as text processing, sentiment analysis, part-of-speech tagging, and more. Its strength lies in its user-friendly API and extensive functionality, enabling users to quickly perform text processing and sentiment analysis without needing to delve into complex NLP techniques. It is suitable for handling general text data, such as social media comments, news articles, and more. TextBlob leverages an internal emotion lexicon(Pattern Library is used in our analysis) to compute polarity scores, which gauge the positivity of text on a scale from -1 (very negative) to 1 (very positive).</p>
+<h4>Process</h4>
+<p>We start by importing the necessary modules and defining a function called <em>get_sentence_sentiment_scores</em>. This function accepts a list of texts as input and calculates sentiment scores for each sentence within the texts.
+Within the function, we iterate through each text, splitting it into sentences using the sentences method in TextBlob. For each sentence, sentiment scores are computed using the <em>sentiment.polarity</em> attribute in TextBlob. These scores, along with the count of sentences in each text, are collected into two lists: <em>sentence_sentiment_scores</em> and <em>sentence_counts</em>, respectively. Then, the function returns these lists, providing sentiment scores for each sentence and the number of sentences in each text.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">textblob</span> <span class="kn">import</span> <span class="n">TextBlob</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Calculate the sentiment scores and the number of sentences for each text</span>
+<span class="k">def</span> <span class="nf">get_sentence_sentiment_scores</span><span class="p">(</span><span class="n">text_list</span><span class="p">):</span>
+    <span class="n">sentence_sentiment_scores</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">sentence_counts</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">text_list</span><span class="p">:</span>
+        <span class="c1"># Split the text into sentences</span>
+        <span class="n">text_with_periods</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;. &#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">text_with_periods</span><span class="p">)</span>
+        <span class="n">sentences</span> <span class="o">=</span> <span class="n">TextBlob</span><span class="p">(</span><span class="n">text_with_periods</span><span class="p">)</span><span class="o">.</span><span class="n">sentences</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span>
+        <span class="n">sentence_counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sentences</span><span class="p">))</span>
+        <span class="c1"># Calculate sentiment scores for each sentence and add them to the list</span>
+        <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span>
+            <span class="n">sentiment_score</span> <span class="o">=</span> <span class="n">sentence</span><span class="o">.</span><span class="n">sentiment</span><span class="o">.</span><span class="n">polarity</span>
+            <span class="n">sentence_sentiment_scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sentiment_score</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sentence_sentiment_scores</span><span class="p">,</span> <span class="n">sentence_counts</span>
+
+<span class="c1"># Get the sentiment scores for each sentence and the count of sentences for each text</span>
+<span class="n">sentence_scores</span><span class="p">,</span> <span class="n">sentence_counts</span> <span class="o">=</span> <span class="n">get_sentence_sentiment_scores</span><span class="p">(</span><span class="n">text_list</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Next, we tally the sentiment scores of all sentences in each text, computing their average by dividing the total by the number of sentences. These average scores, paired with their corresponding text identifiers, are structured into a DataFrame. Finally, we save this DataFrame as a CSV file named <em>average_sentiment_scores.csv</em>. This file offers insights into the prevailing sentiment trend by providing average sentiment scores for each unit of analysis.</p>
+<div class="highlight"><pre><span></span><code><span class="n">avg_sentiment_scores</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">start_index</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">sentence_counts</span><span class="p">:</span>
+    <span class="n">end_index</span> <span class="o">=</span> <span class="n">start_index</span> <span class="o">+</span> <span class="n">count</span>
+    <span class="n">avg_score</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">sentence_scores</span><span class="p">[</span><span class="n">start_index</span><span class="p">:</span><span class="n">end_index</span><span class="p">])</span> <span class="o">/</span> <span class="n">count</span>
+    <span class="n">avg_sentiment_scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">avg_score</span><span class="p">)</span>
+    <span class="n">start_index</span> <span class="o">=</span> <span class="n">end_index</span>
+
+<span class="n">result_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Text&#39;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">avg_sentiment_scores</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span><span class="s1">&#39;Average_Sentiment_Score&#39;</span><span class="p">:</span> <span class="n">avg_sentiment_scores</span><span class="p">})</span>
+<span class="n">result_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;average_sentiment_scores.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+
+<h4>Unexpected Outcomes and Potential Reasons</h4>
+<p>The scatter plot below illustrates the sentiment scores for each FOMC minute, which were computed using the TextBlob method.</p>
+<p><img alt="Results from TextBlob" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/Five-Sigma_02_Results_from_TextBlob.png"></p>
+<p>The unexpected outcomes prompt us a deeper exploration of potential factors influencing these results. Two primary considerations emerged:</p>
+<p><strong>(1) Textual Characteristics:</strong> Linguistic biases inherent in speeches manifested in skewed results favoring positive values. This phenomenon underscores the need for a nuanced understanding of language nuances and biases. Linguistic biases inherent in speeches manifested in skewed results favoring positive values. This phenomenon underscores the need for a nuanced understanding of language nuances and biases.</p>
+<p><strong>(2) Pattern Library Suitability:</strong> TextBlob method relies solely on pre-defined sentiment scores without considering the nuances of financial language or the specific context of FOMC minutes. The inherent limitations of models of the Pattern library in capturing the intricacies of specific language styles observed in minutes. These models may inadequately capture the complexities of financial language, thereby compromising the accuracy of sentiment analysis outcomes.</p>
+<h3>2.3. Pysentiment2</h3>
+<h4>Introduction</h4>
+<p>Pysentiment2 is a library for sentiment analysis in a dictionary framework with two dictionaries provided, namely, Harvard IV-4 and <em>Loughran and McDonald Financial Sentiment Dictionaries</em>.
+We chose the <em>Loughran and McDonald Financial Sentiment Dictionaries</em> which are sentiment dictionaries tailored for financial sentiment analysis, furnishing invaluable insights into the prevalence of positive and negative words, alongside the polarity and subjectivity inherent in the text.We believe that by invoking a sentiment lexicon specialize in the financial text domain, the results will be improved.</p>
+<h4>Process</h4>
+<p>The following code demonstrates how we invoke PySentiment2 and utilize the <em>Loughran and McDonald Financial Sentiment Dictionaries</em> to compute sentiment scores.
+We first import the <em>LM</em> class from the PySentiment2 module. We then initialize an instance of the <em>LM</em> class. Next, we define a function called <em>calculate_sentiment_score</em> which takes a text input and computes the sentiment score using the <em>Loughran and McDonald Financial Sentiment Dictionaries</em> provided by PySentiment2. Finally, we demonstrate how to use this function to calculate the sentiment score for text.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Import the LM class from the Pysentiment2 module</span>
+<span class="kn">import</span> <span class="nn">pysentiment2</span> <span class="k">as</span> <span class="nn">ps</span>
+<span class="n">lm</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">LM</span><span class="p">()</span>
+<span class="c1"># Take a text input and compute the sentiment score using the LM Dictionaries</span>
+<span class="k">def</span> <span class="nf">fin_sentiment</span><span class="p">(</span><span class="n">sentence</span><span class="p">):</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">get_score</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">score</span>
+
+<span class="c1"># Calculate the sentiment scores and the number of sentences for each text</span>
+<span class="k">def</span> <span class="nf">get_sentence_sentiment_scores</span><span class="p">(</span><span class="n">text_list</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">text_list</span><span class="p">:</span>
+        <span class="c1"># Split the text into sentences</span>
+        <span class="n">text_with_periods</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;. &#39;</span><span class="p">)</span>
+        <span class="n">sentences</span> <span class="o">=</span> <span class="n">TextBlob</span><span class="p">(</span><span class="n">text_with_periods</span><span class="p">)</span><span class="o">.</span><span class="n">sentences</span>
+        <span class="c1"># Count number of sentences in one FOMC statement</span>
+        <span class="n">sentence_counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sentences</span><span class="p">))</span>
+        <span class="c1"># Calculate sentiment scores for each sentence and add them to the list</span>
+        <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span>
+            <span class="n">sentiment_score</span> <span class="o">=</span> <span class="n">fin_sentiment</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">sentence</span><span class="p">))</span>
+            <span class="n">sentence_length</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sentence</span><span class="p">))</span>
+</code></pre></div>
+
+<h2>3. Sentence Weighting Methods</h2>
+<h3>3.1.Key Words Weighting</h3>
+<p>Our first attempt at sentence weighting involved identifying key words within each sentence and applying a weight proportional to the number of keywords present. However, since keywords were found in most sentences, this method was limited in effectively capturing nuanced sentiment variations.</p>
+<h3>3.2.Sentence Length Weighting</h3>
+<p>This method entailed multiplying sentiment score of each sentence by its respective length, reflecting the notion that longer sentences may encapsulate richer semantic content. We finally adopted the sentence length weighted approach, applying it in the first step of our sentiment analysis procedure. By aggregating the weighted sentiment scores and computing their average, we derived the final sentiment score for each minute.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Calculate sentiment scores for each sentence and add them to the list</span>
+<span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span>
+    <span class="n">sentiment_score</span> <span class="o">=</span> <span class="n">fin_sentiment</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">sentence</span><span class="p">))</span>
+    <span class="n">sentence_length</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sentence</span><span class="p">))</span>
+<span class="c1"># Locate poliarty score from dictionary, then calculate sentiment using length of sentiment as weight</span>
+    <span class="n">sentiment_score</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">sentiment_score</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">sentence_sentiment_scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sentiment_score</span><span class="p">)</span>
+</code></pre></div>
+
+<h2>4. Results</h2>
+<p>The scatter plot below illustrates the sentiment scores for each FOMC minute, which were computed using the Pysentiment method. In the following regression analysis, we will use the sentiment score as an independent variable.</p>
+<p><img alt="Results from Pysentiment2" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/Five-Sigma_02_Results_from_Pysentiment2.png"></p>
+<h1>Part II：Regression Analysis</h1>
+<h2>Short-end</h2>
+<p>We conducted an analysis to assess the relationship between sentiment scores, obtained via PySentiment2, and 2-year Treasury yields, with the timing of FOMC meetings serving as a reference point on the horizontal axis. The graphical representation revealed an inverse relationship between the two variables, supporting our initial hypothesis that sentiment scores could be indicative of future movements in 2-year Treasury yields.</p>
+<p>Prior to conducting regression analysis, we standardized the frequency of sentiment score data to align with other datasets. This adjustment was necessary because FOMC meetings, which occur eight times annually, are not evenly distributed throughout the year. To achieve uniformity, we recalibrated the dates of FOMC meetings to the end of the corresponding month; for instance, a meeting in mid-December would be represented as December 31st. This allowed us to bring forward sentiment scores to months that do not have FOMC meetings, facilitating our regression analysis. </p>
+<p>Using the matplotlib library for visualization, we observed a tentative inverse relationship between sentiment scores and 2-year yields. However, the regression's explanatory power was relatively weak, with an R-squared value of approximately 0.09. </p>
+<p>Attempts to enhance model accuracy through regression on lagged variables resulted in a decrease in R-squared. We tried incorporating the Personal Consumption Expenditures (PCE) into our multivariate regression. We found that while sentiment scores and 2-year yields maintained an inverse relationship, PCE exhibited a positive relationship with 2-year yields. </p>
+<p>Nonetheless, the improvement in our model's R-squared was minimal, indicating that further refinement and exploration of other data manipulation techniques might be required to achieve more robust results.</p>
+<p>Based on short-end regression analysis, we plotted two graphs：</p>
+<p><strong>(1) Scatter Plot of Sentiment Scores vs. 2Y Yields (No Lag):</strong> The first graph is a scatter plot with sentiment scores on the x-axis and 2-year yields on the y-axis. It also fits a linear regression line to the scatter plot. The polyfit function fits a polynomial of degree 1 (a straight line) to the data points, and poly1d constructs the polynomial equation. The coefficient of determination (r2_score) is printed, which indicates how well the linear regression line fits the data points.</p>
+<p><img alt="Short_end_regression 2D" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/Five-Sigma_02_Short_end_regression_2D.png"></p>
+<p><strong>(2) 3D Scatter Plot of Sentiment Scores, PCE YoY, and 2Y Yields (No Lag):</strong> The second graph is a 3D scatter plot with sentiment scores and PCE YoY on the x and y axes, respectively, and 2-year yields on the z-axis. It also fits a regression plane to the scatter plot using least squares regression (np.linalg.lstsq). The coefficients of the regression plane are used to create a mesh grid (x_plane, y_plane, z_plane), and then the regression plane is plotted on the 3D scatter plot.</p>
+<p><img alt="Short_end_regression 3D" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/Five-Sigma_02_Short_end_regression_3D.png"></p>
+<p>By visualizing the relationships among these variables, the graph helps us assess whether there are any discernible patterns or correlations.</p>
+<p>The code used for plotting is as follows.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;Pysentiment vs. FFR.xlsx&#39;</span><span class="p">,</span> <span class="s1">&#39;Input&#39;</span><span class="p">)</span>
+
+<span class="c1"># Extracting variables from excel</span>
+<span class="n">TwoYear_yields</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;2Y_Yields&#39;</span><span class="p">]</span>
+<span class="n">Sentiment_score</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Score_(EOM)&#39;</span><span class="p">]</span>
+<span class="n">PCE_yoy</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;PCE&#39;</span><span class="p">]</span>
+
+<span class="c1"># No lag (sentiment vs. 2y yields)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Sentiment_score</span><span class="p">,</span> <span class="n">TwoYear_yields</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">Sentiment_score</span><span class="p">,</span> <span class="n">TwoYear_yields</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Sentiment scores&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;2Y yields&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Sentiment_score</span><span class="p">,</span><span class="n">p</span><span class="p">(</span><span class="n">Sentiment_score</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r2_score</span><span class="p">(</span><span class="n">TwoYear_yields</span><span class="p">,</span> <span class="n">p</span><span class="p">(</span><span class="n">Sentiment_score</span><span class="p">)))</span>
+
+<span class="c1"># correlation_matrix = np.corrcoef(Sentiment_score, TwoYear_yields)</span>
+<span class="c1"># correlation_xy = correlation_matrix[0,1]</span>
+<span class="c1"># print(correlation_xy**2)</span>
+
+<span class="c1"># No lag (sentiment &amp; pce vs. 2y yields)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Sentiment_score</span><span class="p">,</span> <span class="n">PCE_yoy</span><span class="p">,</span> <span class="n">TwoYear_yields</span><span class="p">)</span>
+
+<span class="c1"># Fit a plane using np.linalg.lstsq</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">Sentiment_score</span><span class="p">,</span><span class="n">PCE_yoy</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">Sentiment_score</span><span class="p">)])</span><span class="o">.</span><span class="n">T</span>
+<span class="n">plane_coef</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">TwoYear_yields</span><span class="p">,</span> <span class="n">rcond</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="c1"># Create a meshgrid for the plane</span>
+<span class="n">x_plane</span><span class="p">,</span> <span class="n">y_plane</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">Sentiment_score</span><span class="p">,</span> <span class="n">PCE_yoy</span><span class="p">)</span>
+<span class="n">z_plane</span> <span class="o">=</span> <span class="n">plane_coef</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">x_plane</span> <span class="o">+</span> <span class="n">plane_coef</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">y_plane</span> <span class="o">+</span> <span class="n">plane_coef</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="c1"># Add the regression plane</span>
+<span class="n">surfacePlot</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">x_plane</span><span class="p">,</span> <span class="n">y_plane</span><span class="p">,</span> <span class="n">z_plane</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> \
+            <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">antialiased</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">shade</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1">#fig.colorbar(surfacePlot, orientation=&#39;horizontal&#39;)</span>
+
+<span class="c1"># fig.colorbar(ax.plot_surface(x_plane, y_plane, z_plane), shrink=0.5, aspect=5) </span>
+
+<span class="c1"># Add labels and title</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Sentiment scores&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;PCE yoy&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;2Y yields&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">zaxis</span><span class="o">.</span><span class="n">labelpad</span> <span class="o">=</span> <span class="o">-</span><span class="mf">3.5</span>
+<span class="c1">#plt.title(&#39;Multivariate Regression&#39;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Compute r^2 for multivariate regression</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Score_(EOM)&#39;</span><span class="p">,</span> <span class="s1">&#39;PCE&#39;</span><span class="p">]],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;2Y_Yields&#39;</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span> <span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+</code></pre></div>
+
+<h2>Long-End</h2>
+<p>To understand whether the average sentiment score can predict long-end movements, we employed Ordinary Least Squares (OLS) multivariate regressions by regressing the y-variable (10-year) on x-variables, namely PCE, S&amp;P 500, and the average sentiment score. Our first model’s x-variables included the Personal Consumption Expenditures (PCE) year-over-year (YoY) change, the S&amp;P 500 YoY change, and the average sentiment score. In contrast, the second model excluded the sentiment score to examine its effect in combination with the aforementioned factors. </p>
+<p>Our first model yielded an R-square of 0.13; whereas the second model yielded an R-square of 0.044, meaning that without the sentiment score, PCE YoY and S&amp;P 500 YoY can only explain 4.4% of the variance in the 10-year yield. The choice of PCE as a variable was motivated by its significant role in driving approximately 70% of U.S. GDP. </p>
+<p>The Federal Reserve's preference for PCE over the Consumer Price Index (CPI), coupled with a stronger statistical correlation between PCE and the 10-year yield compared to CPI, reinforced its inclusion in our analysis. </p>
+<p>The inclusion of the S&amp;P 500 index was based on the observed interplay between stock market performance and bond yields, which, despite varying across different macroeconomic conditions, often sees investors turn to U.S. Treasury bonds as a "safe haven" during times of stock market downturns. </p>
+<p>Our decision to measure variables in terms of YoY changes rather than absolute levels was driven by the OLS methodologies. Changes, represented by YoY, provide more informational value than levels; OLS tries to fit a line of best fit, and fitting it to any point more would mean compromising the level of fitting to other points; when doing YoY, it 1) tracks the direction of travel of the line which contains more informational values; 2) gives less noise than month-over-month (MOM); 3) is a way of normalizing variables. </p>
+<p>However, our findings indicate that the average sentiment score alone does not sufficiently explain the movements of the 10-year yield. This conclusion underscores the complexity of factors influencing long-term interest rates and highlights the significance of other factors affecting the long end. One such factor is the volume of Treasury issuance; another is the term premium on the 10-year yield. Using the Fisher equation, TP = nominal interest rate - real interest rate - inflation rate, is a crucial element in understanding yield dynamics.</p>
+
+
+             
+ 
+            
+            
+            
+
+
+
+
+
+
+
+            <hr/>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2024-03-18T22:00:00+08:00">Mon 18 March 2024</time>
+            <h4>Category</h4>
+            <a class="category-link" href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/categories.html#progress-report-ref">Progress Report</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/tags.html#group-five-sigma-ref">Group Five Sigma
+                    <span class="superscript">2</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+    <a href="https://github.com/buehlmaier/MFIN7036-student-blog-2024-02" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="GitHub" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1B1817"/><path fill="#fff" d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+    </a>
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
+</html>
