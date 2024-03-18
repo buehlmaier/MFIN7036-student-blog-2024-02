@@ -1,7 +1,7 @@
 ---
 Title: Seeking Curve Trade Opportunities Based on FOMC minutes (by Group "Five Sigma")
 Date: 2024-03-04 
-Category: Blog Post 1
+Category: Progress Report
 Tags: Group Five Sigma
 ---
 
