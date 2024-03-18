@@ -600,7 +600,117 @@ https://www.dw.com/en/top-stories/s-9097
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;From the results, it seems that the newspaper scraping was very successful this time. There were no instances of 404 errors or access denial, and all the news articles were successfully scraped.&lt;/p&gt;</content><category term="Progress Report"></category><category term="Group Word Wizards"></category></entry><entry><title>Data Collection and Text Preprocessing (by Group "NLP Give Me Five")</title><link href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/data-collection-and-text-preprocessing-by-group-nlp-give-me-five.html" rel="alternate"></link><published>2024-03-07T17:39:00+08:00</published><updated>2024-03-07T17:39:00+08:00</updated><author><name>MFIN7036 Students 2024</name></author><id>tag:buehlmaier.github.io,2024-03-07:/MFIN7036-student-blog-2024-02/data-collection-and-text-preprocessing-by-group-nlp-give-me-five.html</id><summary type="html">&lt;h2&gt;Background and Goal&lt;/h2&gt;
+&lt;p&gt;From the results, it seems that the newspaper scraping was very successful this time. There were no instances of 404 errors or access denial, and all the news articles were successfully scraped.&lt;/p&gt;</content><category term="Progress Report"></category><category term="Group Word Wizards"></category></entry><entry><title>Data preprocessing (By Group "FINIX")</title><link href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/data-preprocessing-by-group-finix.html" rel="alternate"></link><published>2024-03-12T12:02:00+08:00</published><updated>2024-03-12T12:02:00+08:00</updated><author><name>MFIN7036 Students 2024</name></author><id>tag:buehlmaier.github.io,2024-03-12:/MFIN7036-student-blog-2024-02/data-preprocessing-by-group-finix.html</id><summary type="html">&lt;h1&gt;Mini-Blog&lt;/h1&gt;
+&lt;p&gt;In this blog, we tackle some challenges we encountered in earlier stages. Our work include data collection, handling the "toomanyrequests" issue, and addressing the specific concerns regarding post number limitations. In the following sections, we will show details for data cleaning, overcoming API rate limits, and dealing with limitations …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Mini-Blog&lt;/h1&gt;
+&lt;p&gt;In this blog, we tackle some challenges we encountered in earlier stages. Our work include data collection, handling the "toomanyrequests" issue, and addressing the specific concerns regarding post number limitations. In the following sections, we will show details for data cleaning, overcoming API rate limits, and dealing with limitations.&lt;/p&gt;
+&lt;h2&gt;Data Cleaning&lt;/h2&gt;
+&lt;p&gt;In last post, we mentioned about some special elements in our datasets. We now get rid of those elements using regular expression. Those elements include: &lt;em&gt;bot garbage message, markdown formatting string, URLs, '\n', Emojis&lt;/em&gt;. Removing these elements helps clean the data, reducing complexity and noise, which in turn enhances the performance of sentiment analysis models. This preprocessing step ensures that the analysis is focused on the text with opinions or feelings. The work includes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h4&gt;Filter comments that contains bot garbage massage. specifically filtering the markdown table format&lt;/h4&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="s s-Atom"&gt;sample&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s s-Atom"&gt;sample&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="s s-Atom"&gt;sample&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;&amp;#39;Comment Body&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="s s-Atom"&gt;str&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;contains&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s s-Atom"&gt;&amp;#39;:--|:--|:--|:--&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt; &lt;span class="s s-Atom"&gt;#&lt;/span&gt; &lt;span class="s s-Atom"&gt;filter&lt;/span&gt; &lt;span class="s s-Atom"&gt;comments&lt;/span&gt; &lt;span class="s s-Atom"&gt;containing&lt;/span&gt; &lt;span class="s s-Atom"&gt;table&lt;/span&gt;
+
+&lt;span class="s s-Atom"&gt;#or&lt;/span&gt;
+
+&lt;span class="s s-Atom"&gt;df_submissions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s s-Atom"&gt;df_submissions&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s s-Atom"&gt;df_submissions&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;&amp;#39;cdistinguished&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s s-Atom"&gt;&amp;#39;moderator&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;[!NOTE]&lt;/p&gt;
+&lt;p&gt;Tables are in format of &lt;strong&gt;':--|:--|:--|:--'&lt;/strong&gt;. Those table usually contain advertisements. The advertisements are usually posted by the "moderator"s. They can be removed by simply filtering out the data 'cdistinguisied' == 'moderator'.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img alt="group-FINIX_02_image_image-advertisements " src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/group-FINIX_02_image-advertisements.jpg"&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h4&gt;Remove markdown formatting string&lt;/h4&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sample[&amp;#39;Comment Body&amp;#39;] = sample[&amp;#39;Comment Body&amp;#39;].apply(strip_markdown.strip_markdown)  # clean all markdown format
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;[!NOTE]&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;'strip_markdown'&lt;/strong&gt; is a python package that's used to remove the markdown formats.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img alt="group-FINIX_02_image_image-markdown" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/group-FINIX_02_image-markdown.jpg"&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h4&gt;Remove URL&lt;/h4&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;remove_urls&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;text&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;:
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="err"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="err"&gt;    Removes URLs from a given text string.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="err"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="err"&gt;    return re.sub(r&amp;#39;http\S+&amp;#39;, &amp;#39;&amp;#39;, text)&lt;/span&gt;
+&lt;span class="err"&gt;sample[&amp;#39;Comment Body&amp;#39;] = sample[&amp;#39;Comment Body&amp;#39;].apply(remove_urls) # remove urls&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;[!NOTE]&lt;/p&gt;
+&lt;p&gt;URLs usually start with &lt;strong&gt;'http\S+'&lt;/strong&gt;. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img alt="group-FINIX_02_image_image-URL" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/group-FINIX_02_image-URL.jpg"&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h4&gt;Remove returning line "\n"&lt;/h4&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sample[&amp;#39;Comment Body&amp;#39;] = sample[&amp;#39;Comment Body&amp;#39;].str.strip(&amp;#39;\n&amp;#39;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;[!NOTE]&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;'\n'&lt;/strong&gt; represents next line in the text.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img alt="group-FINIX_02_image_image-nextline" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/group-FINIX_02_image-nextline.jpg"&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h4&gt;Remove Emoji&lt;/h4&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;remove_emoji&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;text&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;:
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;emoji_pattern&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;re&lt;/span&gt;.&lt;span class="nv"&gt;compile&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;[&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;                               &lt;/span&gt;&lt;span class="nv"&gt;u&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\U0001F600-\U0001F64F&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;#&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;emoticons&lt;/span&gt;
+&lt;span class="w"&gt;                               &lt;/span&gt;&lt;span class="nv"&gt;u&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\U0001F300-\U0001F5FF&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;#&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;symbols&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;pictographs&lt;/span&gt;
+&lt;span class="w"&gt;                               &lt;/span&gt;&lt;span class="nv"&gt;u&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\U0001F680-\U0001F6FF&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;#&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;transport&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;map&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;symbols&lt;/span&gt;
+&lt;span class="w"&gt;                               &lt;/span&gt;&lt;span class="nv"&gt;u&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\U0001F700-\U0001F77F&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;#&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;alchemical&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;symbols&lt;/span&gt;
+&lt;span class="w"&gt;                               &lt;/span&gt;&lt;span class="nv"&gt;u&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\U0001F780-\U0001F7FF&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;#&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Geometric&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Shapes&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Extended&lt;/span&gt;
+&lt;span class="w"&gt;                               &lt;/span&gt;&lt;span class="nv"&gt;u&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\U0001F800-\U0001F8FF&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;#&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Supplemental&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Arrows&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;C&lt;/span&gt;
+&lt;span class="w"&gt;                               &lt;/span&gt;&lt;span class="nv"&gt;u&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\U0001F900-\U0001F9FF&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;#&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Supplemental&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Symbols&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Pictographs&lt;/span&gt;
+&lt;span class="w"&gt;                               &lt;/span&gt;&lt;span class="nv"&gt;u&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\U0001FA00-\U0001FA6F&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;#&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Chess&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Symbols&lt;/span&gt;
+&lt;span class="w"&gt;                               &lt;/span&gt;&lt;span class="nv"&gt;u&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\U0001FA70-\U0001FAFF&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;#&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Symbols&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Pictographs&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Extended&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;A&lt;/span&gt;
+&lt;span class="w"&gt;                               &lt;/span&gt;&lt;span class="nv"&gt;u&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\U00002702-\U000027B0&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;#&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;dingbats&lt;/span&gt;
+&lt;span class="w"&gt;                               &lt;/span&gt;&lt;span class="nv"&gt;u&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\U000024C2-\U0001F251&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="w"&gt;                               &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;]+&amp;quot;&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;flags&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;re&lt;/span&gt;.&lt;span class="nv"&gt;UNICODE&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;emoji_pattern&lt;/span&gt;.&lt;span class="nv"&gt;sub&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;text&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;[!NOTE]&lt;/p&gt;
+&lt;p&gt;The U thing in the list is the &lt;strong&gt;Unicode&lt;/strong&gt; of the emojis.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img alt="group-FINIX_02_image_image-emojis" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/group-FINIX_02_image-emojis.jpg"&gt;&lt;/p&gt;
+&lt;h2&gt;Problem in collecting data&lt;/h2&gt;
+&lt;h3&gt;Fixed Number of Posts&lt;/h3&gt;
+&lt;p&gt;Since, for now, we only focus on the subreddit &lt;em&gt;'r/wallstreetbets'&lt;/em&gt;, we tested and found that only a fixed number of posts will be get from reddit no matter how many times you try. &lt;strong&gt;For example&lt;/strong&gt;, we search the topic ''&lt;em&gt;AI&lt;/em&gt;" in &lt;em&gt;'r/wallstreetbets'&lt;/em&gt;, and we can at most get 243 posts overall. That may cause a shortage of data for our project. To solve this problem, we decide to put data in several topics with strong connections together as a whole.&lt;/p&gt;
+&lt;h3&gt;TooManyRequests&lt;/h3&gt;
+&lt;p&gt;While we are collecting data using &lt;strong&gt;praw&lt;/strong&gt;, we found reddit actually set a limits on how many posts and comments we can collect in a certain period of time.  In order to solve this problem, we make a simple modification to solve the problem:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;True&lt;/span&gt;:
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;try&lt;/span&gt;:
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nv"&gt;post&lt;/span&gt;.&lt;span class="nv"&gt;comments&lt;/span&gt;.&lt;span class="nv"&gt;replace_more&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;limit&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;None&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;threshold&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;break&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;except&lt;/span&gt;:
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nv"&gt;print&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="err"&gt;&amp;quot;Handling replace more exception”)&lt;/span&gt;
+&lt;span class="err"&gt;        time.sleep(60)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;[!NOTE]&lt;/p&gt;
+&lt;p&gt;We guess that happens because there is a particularly large post with numerous comments, exceeding the package size limit for API responses. Therefore, we added sleep() function to pass the restriction period triggered by the &lt;code&gt;try-except&lt;/code&gt;block.  Plus, we might adjust &lt;code&gt;limit&lt;/code&gt; term according to our requirements.&lt;/p&gt;
+&lt;/blockquote&gt;</content><category term="Progress Report"></category><category term="Group FINIX"></category></entry><entry><title>Data Collection and Text Preprocessing (by Group "NLP Give Me Five")</title><link href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/data-collection-and-text-preprocessing-by-group-nlp-give-me-five.html" rel="alternate"></link><published>2024-03-07T17:39:00+08:00</published><updated>2024-03-07T17:39:00+08:00</updated><author><name>MFIN7036 Students 2024</name></author><id>tag:buehlmaier.github.io,2024-03-07:/MFIN7036-student-blog-2024-02/data-collection-and-text-preprocessing-by-group-nlp-give-me-five.html</id><summary type="html">&lt;h2&gt;Background and Goal&lt;/h2&gt;
 &lt;p&gt;Our mission is to analyze the relationship between the sentiment in Federal Open Market Committee Statements and the yields of government bonds. This blog post mainly discusses the code and challenges we encountered during data processing and integration.&lt;/p&gt;
 &lt;p&gt;For our data selection, we chose the monthly 30-year …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Background and Goal&lt;/h2&gt;
 &lt;p&gt;Our mission is to analyze the relationship between the sentiment in Federal Open Market Committee Statements and the yields of government bonds. This blog post mainly discusses the code and challenges we encountered during data processing and integration.&lt;/p&gt;

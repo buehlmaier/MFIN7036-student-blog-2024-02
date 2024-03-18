@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/theme/css/custom.css" media="screen">
+
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+        <meta name="author" content="MFIN7036 Students 2024" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="Group FINIX, Progress Report, " />
+
+<meta property="og:title" content="Data preprocessing (By Group &#34;FINIX&#34;) "/>
+<meta property="og:url" content="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/data-preprocessing-by-group-finix.html" />
+<meta property="og:description" content="Mini-Blog In this blog, we tackle some challenges we encountered in earlier stages. Our work include data collection, handling the &#34;toomanyrequests&#34; issue, and addressing the specific concerns regarding post number limitations. In the following sections, we will show details for data cleaning, overcoming API rate limits, and dealing with limitations …" />
+<meta property="og:site_name" content="MFIN7036 Student Blog 2024" />
+<meta property="og:article:author" content="MFIN7036 Students 2024" />
+<meta property="og:article:published_time" content="2024-03-12T12:02:00+08:00" />
+<meta name="twitter:title" content="Data preprocessing (By Group &#34;FINIX&#34;) ">
+<meta name="twitter:description" content="Mini-Blog In this blog, we tackle some challenges we encountered in earlier stages. Our work include data collection, handling the &#34;toomanyrequests&#34; issue, and addressing the specific concerns regarding post number limitations. In the following sections, we will show details for data cleaning, overcoming API rate limits, and dealing with limitations …">
+
+        <title>Data preprocessing (By Group &#34;FINIX&#34;)  · MFIN7036 Student Blog 2024
+</title>
+        <link href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="MFIN7036 Student Blog 2024 - Full Atom Feed" />
+
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/"><span class=site-name>MFIN7036 Student Blog 2024</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       https://buehlmaier.github.io/MFIN7036-student-blog-2024-02
+                                    >Home</a>
+                                </li>
+                                <li ><a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/categories.html">Categories</a></li>
+                                <li ><a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/tags.html">Tags</a></li>
+                                <li ><a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/data-preprocessing-by-group-finix.html">
+                Data preprocessing (By Group "FINIX")
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+            
+            <h1>Mini-Blog</h1>
+<p>In this blog, we tackle some challenges we encountered in earlier stages. Our work include data collection, handling the "toomanyrequests" issue, and addressing the specific concerns regarding post number limitations. In the following sections, we will show details for data cleaning, overcoming API rate limits, and dealing with limitations.</p>
+<h2>Data Cleaning</h2>
+<p>In last post, we mentioned about some special elements in our datasets. We now get rid of those elements using regular expression. Those elements include: <em>bot garbage message, markdown formatting string, URLs, '\n', Emojis</em>. Removing these elements helps clean the data, reducing complexity and noise, which in turn enhances the performance of sentiment analysis models. This preprocessing step ensures that the analysis is focused on the text with opinions or feelings. The work includes:</p>
+<ul>
+<li>
+<h4>Filter comments that contains bot garbage massage. specifically filtering the markdown table format</h4>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="s s-Atom">sample</span> <span class="o">=</span> <span class="s s-Atom">sample</span><span class="p">[</span><span class="o">~</span><span class="s s-Atom">sample</span><span class="p">[</span><span class="s s-Atom">&#39;Comment Body&#39;</span><span class="p">].</span><span class="s s-Atom">str</span><span class="p">.</span><span class="nf">contains</span><span class="p">(</span><span class="s s-Atom">&#39;:--|:--|:--|:--&#39;</span><span class="p">)]</span> <span class="s s-Atom">#</span> <span class="s s-Atom">filter</span> <span class="s s-Atom">comments</span> <span class="s s-Atom">containing</span> <span class="s s-Atom">table</span>
+
+<span class="s s-Atom">#or</span>
+
+<span class="s s-Atom">df_submissions</span> <span class="o">=</span> <span class="s s-Atom">df_submissions</span><span class="p">[</span><span class="o">~</span><span class="p">(</span><span class="s s-Atom">df_submissions</span><span class="p">[</span><span class="s s-Atom">&#39;cdistinguished&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s s-Atom">&#39;moderator&#39;</span><span class="p">)]</span>
+</code></pre></div>
+
+<blockquote>
+<p>[!NOTE]</p>
+<p>Tables are in format of <strong>':--|:--|:--|:--'</strong>. Those table usually contain advertisements. The advertisements are usually posted by the "moderator"s. They can be removed by simply filtering out the data 'cdistinguisied' == 'moderator'.</p>
+</blockquote>
+<p><img alt="group-FINIX_02_image_image-advertisements " src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/group-FINIX_02_image-advertisements.jpg"></p>
+<ul>
+<li>
+<h4>Remove markdown formatting string</h4>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code>sample[&#39;Comment Body&#39;] = sample[&#39;Comment Body&#39;].apply(strip_markdown.strip_markdown)  # clean all markdown format
+</code></pre></div>
+
+<blockquote>
+<p>[!NOTE]</p>
+<p><strong>'strip_markdown'</strong> is a python package that's used to remove the markdown formats.</p>
+</blockquote>
+<p><img alt="group-FINIX_02_image_image-markdown" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/group-FINIX_02_image-markdown.jpg"></p>
+<ul>
+<li>
+<h4>Remove URL</h4>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nv">def</span><span class="w"> </span><span class="nv">remove_urls</span><span class="ss">(</span><span class="nv">text</span><span class="ss">)</span>:
+<span class="w">    </span><span class="s2">&quot;&quot;</span><span class="err">&quot;</span>
+<span class="err">    Removes URLs from a given text string.</span>
+<span class="w">    </span><span class="s2">&quot;&quot;</span><span class="err">&quot;</span>
+<span class="err">    return re.sub(r&#39;http\S+&#39;, &#39;&#39;, text)</span>
+<span class="err">sample[&#39;Comment Body&#39;] = sample[&#39;Comment Body&#39;].apply(remove_urls) # remove urls</span>
+</code></pre></div>
+
+<blockquote>
+<p>[!NOTE]</p>
+<p>URLs usually start with <strong>'http\S+'</strong>. </p>
+</blockquote>
+<p><img alt="group-FINIX_02_image_image-URL" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/group-FINIX_02_image-URL.jpg"></p>
+<ul>
+<li>
+<h4>Remove returning line "\n"</h4>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code>sample[&#39;Comment Body&#39;] = sample[&#39;Comment Body&#39;].str.strip(&#39;\n&#39;)
+</code></pre></div>
+
+<blockquote>
+<p>[!NOTE]</p>
+<p><strong>'\n'</strong> represents next line in the text.</p>
+</blockquote>
+<p><img alt="group-FINIX_02_image_image-nextline" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/group-FINIX_02_image-nextline.jpg"></p>
+<ul>
+<li>
+<h4>Remove Emoji</h4>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nv">def</span><span class="w"> </span><span class="nv">remove_emoji</span><span class="ss">(</span><span class="nv">text</span><span class="ss">)</span>:
+<span class="w">    </span><span class="nv">emoji_pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">re</span>.<span class="nv">compile</span><span class="ss">(</span><span class="s2">&quot;[&quot;</span>
+<span class="w">                               </span><span class="nv">u</span><span class="s2">&quot;\U0001F600-\U0001F64F&quot;</span><span class="w">  </span>#<span class="w"> </span><span class="nv">emoticons</span>
+<span class="w">                               </span><span class="nv">u</span><span class="s2">&quot;\U0001F300-\U0001F5FF&quot;</span><span class="w">  </span>#<span class="w"> </span><span class="nv">symbols</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="nv">pictographs</span>
+<span class="w">                               </span><span class="nv">u</span><span class="s2">&quot;\U0001F680-\U0001F6FF&quot;</span><span class="w">  </span>#<span class="w"> </span><span class="nv">transport</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="nv">map</span><span class="w"> </span><span class="nv">symbols</span>
+<span class="w">                               </span><span class="nv">u</span><span class="s2">&quot;\U0001F700-\U0001F77F&quot;</span><span class="w">  </span>#<span class="w"> </span><span class="nv">alchemical</span><span class="w"> </span><span class="nv">symbols</span>
+<span class="w">                               </span><span class="nv">u</span><span class="s2">&quot;\U0001F780-\U0001F7FF&quot;</span><span class="w">  </span>#<span class="w"> </span><span class="nv">Geometric</span><span class="w"> </span><span class="nv">Shapes</span><span class="w"> </span><span class="nv">Extended</span>
+<span class="w">                               </span><span class="nv">u</span><span class="s2">&quot;\U0001F800-\U0001F8FF&quot;</span><span class="w">  </span>#<span class="w"> </span><span class="nv">Supplemental</span><span class="w"> </span><span class="nv">Arrows</span><span class="o">-</span><span class="nv">C</span>
+<span class="w">                               </span><span class="nv">u</span><span class="s2">&quot;\U0001F900-\U0001F9FF&quot;</span><span class="w">  </span>#<span class="w"> </span><span class="nv">Supplemental</span><span class="w"> </span><span class="nv">Symbols</span><span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">Pictographs</span>
+<span class="w">                               </span><span class="nv">u</span><span class="s2">&quot;\U0001FA00-\U0001FA6F&quot;</span><span class="w">  </span>#<span class="w"> </span><span class="nv">Chess</span><span class="w"> </span><span class="nv">Symbols</span>
+<span class="w">                               </span><span class="nv">u</span><span class="s2">&quot;\U0001FA70-\U0001FAFF&quot;</span><span class="w">  </span>#<span class="w"> </span><span class="nv">Symbols</span><span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">Pictographs</span><span class="w"> </span><span class="nv">Extended</span><span class="o">-</span><span class="nv">A</span>
+<span class="w">                               </span><span class="nv">u</span><span class="s2">&quot;\U00002702-\U000027B0&quot;</span><span class="w">  </span>#<span class="w"> </span><span class="nv">dingbats</span>
+<span class="w">                               </span><span class="nv">u</span><span class="s2">&quot;\U000024C2-\U0001F251&quot;</span><span class="w"> </span>
+<span class="w">                               </span><span class="s2">&quot;]+&quot;</span>,<span class="w"> </span><span class="nv">flags</span><span class="o">=</span><span class="nv">re</span>.<span class="nv">UNICODE</span><span class="ss">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nv">emoji_pattern</span>.<span class="nv">sub</span><span class="ss">(</span><span class="nv">r</span><span class="s1">&#39;&#39;</span>,<span class="w"> </span><span class="nv">text</span><span class="ss">)</span>
+</code></pre></div>
+
+<blockquote>
+<p>[!NOTE]</p>
+<p>The U thing in the list is the <strong>Unicode</strong> of the emojis.</p>
+</blockquote>
+<p><img alt="group-FINIX_02_image_image-emojis" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/group-FINIX_02_image-emojis.jpg"></p>
+<h2>Problem in collecting data</h2>
+<h3>Fixed Number of Posts</h3>
+<p>Since, for now, we only focus on the subreddit <em>'r/wallstreetbets'</em>, we tested and found that only a fixed number of posts will be get from reddit no matter how many times you try. <strong>For example</strong>, we search the topic ''<em>AI</em>" in <em>'r/wallstreetbets'</em>, and we can at most get 243 posts overall. That may cause a shortage of data for our project. To solve this problem, we decide to put data in several topics with strong connections together as a whole.</p>
+<h3>TooManyRequests</h3>
+<p>While we are collecting data using <strong>praw</strong>, we found reddit actually set a limits on how many posts and comments we can collect in a certain period of time.  In order to solve this problem, we make a simple modification to solve the problem:</p>
+<div class="highlight"><pre><span></span><code><span class="k">while</span><span class="w"> </span><span class="nv">True</span>:
+<span class="w">    </span><span class="nv">try</span>:
+<span class="w">        </span><span class="nv">post</span>.<span class="nv">comments</span>.<span class="nv">replace_more</span><span class="ss">(</span><span class="nv">limit</span><span class="o">=</span><span class="nv">None</span>,<span class="w"> </span><span class="nv">threshold</span><span class="o">=</span><span class="mi">0</span><span class="ss">)</span>
+<span class="w">        </span><span class="k">break</span>
+<span class="w">    </span><span class="nv">except</span>:
+<span class="w">        </span><span class="nv">print</span><span class="ss">(</span><span class="err">&quot;Handling replace more exception”)</span>
+<span class="err">        time.sleep(60)</span>
+</code></pre></div>
+
+<blockquote>
+<p>[!NOTE]</p>
+<p>We guess that happens because there is a particularly large post with numerous comments, exceeding the package size limit for API responses. Therefore, we added sleep() function to pass the restriction period triggered by the <code>try-except</code>block.  Plus, we might adjust <code>limit</code> term according to our requirements.</p>
+</blockquote>
+
+
+             
+ 
+            
+            
+            
+
+
+
+
+
+
+
+            <hr/>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2024-03-12T12:02:00+08:00">Tue 12 March 2024</time>
+            <h4>Category</h4>
+            <a class="category-link" href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/categories.html#progress-report-ref">Progress Report</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/tags.html#group-finix-ref">Group FINIX
+                    <span class="superscript">3</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+    <a href="https://github.com/buehlmaier/MFIN7036-student-blog-2024-02" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="GitHub" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1B1817"/><path fill="#fff" d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+    </a>
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
+</html>
