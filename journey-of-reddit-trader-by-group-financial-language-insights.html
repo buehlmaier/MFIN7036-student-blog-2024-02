@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/theme/css/custom.css" media="screen">
+
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+        <meta name="author" content="MFIN7036 Students 2024" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="Group Financial Language Insights, Progress Report, " />
+
+<meta property="og:title" content="Journey of Reddit Trader (by Group &#34;Financial Language Insights&#34;) "/>
+<meta property="og:url" content="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/journey-of-reddit-trader-by-group-financial-language-insights.html" />
+<meta property="og:description" content="By Group &#34;Financial Language Insights&#34; This blog aims to recap the journey of the &#34;Reddit Trader&#34; project. Our ultimate goal is to use the power of Reddit sentiment analysis to predict stock price movements. Throughout the Data Processing and Binary Classifier Training process, encountering challenges was to be expected. While …" />
+<meta property="og:site_name" content="MFIN7036 Student Blog 2024" />
+<meta property="og:article:author" content="MFIN7036 Students 2024" />
+<meta property="og:article:published_time" content="2024-03-18T22:00:00+08:00" />
+<meta name="twitter:title" content="Journey of Reddit Trader (by Group &#34;Financial Language Insights&#34;) ">
+<meta name="twitter:description" content="By Group &#34;Financial Language Insights&#34; This blog aims to recap the journey of the &#34;Reddit Trader&#34; project. Our ultimate goal is to use the power of Reddit sentiment analysis to predict stock price movements. Throughout the Data Processing and Binary Classifier Training process, encountering challenges was to be expected. While …">
+
+        <title>Journey of Reddit Trader (by Group &#34;Financial Language Insights&#34;)  · MFIN7036 Student Blog 2024
+</title>
+        <link href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="MFIN7036 Student Blog 2024 - Full Atom Feed" />
+
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/"><span class=site-name>MFIN7036 Student Blog 2024</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       https://buehlmaier.github.io/MFIN7036-student-blog-2024-02
+                                    >Home</a>
+                                </li>
+                                <li ><a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/categories.html">Categories</a></li>
+                                <li ><a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/tags.html">Tags</a></li>
+                                <li ><a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/journey-of-reddit-trader-by-group-financial-language-insights.html">
+                Journey of Reddit Trader (by Group "Financial Language Insights")
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+            
+            <p>By Group "Financial Language Insights"</p>
+<p>This blog aims to recap the journey of the "Reddit Trader" project. Our ultimate goal is to use the power of Reddit sentiment analysis to predict stock price movements. Throughout the Data Processing and Binary Classifier Training process, encountering challenges was to be expected. While we have devised solutions for certain hurdles, there are still lingering issues that we are actively addressing. Join us in this blog as we reflect on our journey, share valuable insights, and strive to assist fellow students who may encounter similar difficulties. </p>
+<h1>Problem 1: Database</h1>
+<p>We initially utilized the Python package PRAW to scrape Reddit posts. However, a limitation became apparent since it could only collect a maximum of 1000 items regardless of parameter adjustments. In practice, we could only retrieve 250 posts due to additional restrictions. Consequently, we were unable to acquire a substantial amount of Reddit data using this package. </p>
+<p><strong>Solution:</strong> We addressed this issue by using PRAW to scrape only the latest data within the year 2024 ensuring that our dataset captured the most up-to-date data. For historical data before 2024, we leveraged Pushshift Dumps which provided us with third-party crawled data. By merging these two methods, we obtain rich training and testing datasets. In light of the intricate nature of the code within Pushshift Dumps, we will only present a comprehensive guide on utilizing the PRAW package here:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">praw</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="c1"># PRAW setup and authentication</span>
+<span class="n">reddit</span> <span class="o">=</span> <span class="n">praw</span><span class="o">.</span><span class="n">Reddit</span><span class="p">(</span><span class="n">client_id</span><span class="o">=</span><span class="s1">&#39;your_client_id&#39;</span><span class="p">,</span>
+                     <span class="n">client_secret</span><span class="o">=</span><span class="s1">&#39;your_client_secret&#39;</span><span class="p">,</span>
+                     <span class="n">user_agent</span><span class="o">=</span><span class="s1">&#39;your_user_agent&#39;</span><span class="p">)</span>
+
+<span class="c1"># Function to capture recent posts using PRAW</span>
+<span class="k">def</span> <span class="nf">recent_search</span><span class="p">(</span><span class="n">reddit</span><span class="p">,</span> <span class="n">subreddit_name</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">limit</span><span class="p">):</span>
+    <span class="n">subreddit</span> <span class="o">=</span> <span class="n">reddit</span><span class="o">.</span><span class="n">subreddit</span><span class="p">(</span><span class="n">subreddit_name</span><span class="p">)</span>
+
+    <span class="n">topics</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;score&#39;</span><span class="p">:</span> <span class="p">[],</span>
+              <span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="p">[],</span>
+              <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="p">[],</span>
+              <span class="s1">&#39;userid&#39;</span><span class="p">:</span> <span class="p">[],</span>
+              <span class="s1">&#39;link&#39;</span><span class="p">:</span> <span class="p">[],</span>
+              <span class="s1">&#39;body&#39;</span><span class="p">:</span> <span class="p">[],</span>
+             <span class="p">}</span>
+
+    <span class="k">for</span> <span class="n">submission</span> <span class="ow">in</span> <span class="n">subreddit</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">time_filter</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">):</span>
+        <span class="n">topics</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">submission</span><span class="o">.</span><span class="n">score</span><span class="p">)</span>
+        <span class="n">topics</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">submission</span><span class="o">.</span><span class="n">created</span><span class="p">)</span>
+        <span class="n">topics</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">submission</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+        <span class="n">topics</span><span class="p">[</span><span class="s1">&#39;userid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">submission</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">topics</span><span class="p">[</span><span class="s1">&#39;link&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">submission</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+        <span class="n">topics</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">submission</span><span class="o">.</span><span class="n">selftext</span><span class="p">)</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">topics</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">df</span>
+
+<span class="c1"># Parameters</span>
+<span class="n">subreddit_name</span> <span class="o">=</span> <span class="s1">&#39;wallstreetbets&#39;</span>  <span class="c1"># The subreddit to search</span>
+<span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;APPLE&#39;</span>  <span class="c1"># The query to search for in post titles or bodies</span>
+<span class="n">limit</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># Maximum number of posts to retrieve</span>
+
+<span class="c1"># Capture recent posts using PRAW</span>
+<span class="n">recent_posts</span> <span class="o">=</span> <span class="n">recent_search</span><span class="p">(</span><span class="n">reddit</span><span class="p">,</span> <span class="n">subreddit_name</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">limit</span><span class="p">)</span>
+
+<span class="c1"># Print the captured posts</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">recent_posts</span><span class="p">)</span>
+</code></pre></div>
+
+<h1>Problem 2: Sentiment Analysis of Comments</h1>
+<p>This issue was brought about by Problem One. Concerned about the potential insufficiency of post quantity obtained through PRAW (before we find "Pushshift Dumps" as a solution), we explored the idea of simultaneously scraping comments and discovered PRAW’s robust capability to retrieve comments. However, a challenge arose due to the hierarchical comment system on Reddit, where comments are organized in a tree-like structure. This posed a problem for sentiment analysis because it could not accurately determine whether an emotional comment was directed towards the post itself or the mentioned stock. For example, if the post is "NVIDIA is terrible" and the comment is "You are terribly wrong," the sentiment score of this comment would be negative, despite it is actually supporting NVIDIA, that is, a positive attitude towards the stock!</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">nltk.sentiment</span> <span class="kn">import</span> <span class="n">SentimentIntensityAnalyzer</span>
+
+<span class="c1"># Sentiment analysis function</span>
+<span class="k">def</span> <span class="nf">sentiment_analysis</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">sia</span> <span class="o">=</span> <span class="n">SentimentIntensityAnalyzer</span><span class="p">()</span>
+    <span class="n">sentiment_scores</span> <span class="o">=</span> <span class="n">sia</span><span class="o">.</span><span class="n">polarity_scores</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">sentiment_score</span> <span class="o">=</span> <span class="n">sentiment_scores</span><span class="p">[</span><span class="s1">&#39;compound&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">sentiment_score</span>
+
+<span class="c1"># Example sentiment analysis</span>
+<span class="n">post_text</span> <span class="o">=</span> <span class="s2">&quot;NVIDIA is terrible&quot;</span>
+<span class="n">comment_text</span> <span class="o">=</span> <span class="s2">&quot;You are terribly wrong&quot;</span>
+
+<span class="n">post_sentiment</span> <span class="o">=</span> <span class="n">sentiment_analysis</span><span class="p">(</span><span class="n">post_text</span><span class="p">)</span>
+<span class="n">comment_sentiment</span> <span class="o">=</span> <span class="n">sentiment_analysis</span><span class="p">(</span><span class="n">comment_text</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Post Sentiment:&quot;</span><span class="p">,</span> <span class="n">post_sentiment</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Comment Sentiment:&quot;</span><span class="p">,</span> <span class="n">comment_sentiment</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Here is the expected return, indicating that comments originally expressing extremely positive sentiment towards stocks have been assessed as highly negative:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Post</span> <span class="n">Sentiment</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.4767</span>
+<span class="n">Comment</span> <span class="n">Sentiment</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.6249</span>
+</code></pre></div>
+
+<p><strong>Solution:</strong> Considering that many sentiment analysis packages are unable to handle such scenarios effectively, we made the decision to forgo analyzing comments and focus solely on analyzing the main posts. </p>
+<h1>Problem 3: Sentiment Analysis Package</h1>
+<p>Initially, we relied on the NLTK Vader for sentiment analysis of Reddit posts. However, upon conducting our inspection, we discovered that it often yielded inaccurate results. For instance, an evident negative sentiment expressed in a post such as " Nvda is a huge bubble right now." was misclassified as positive due to the positive connotation of "bubble" outside the financial domain:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Original</span> <span class="n">Post</span><span class="p">:</span> <span class="n">Nvda</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">huge</span> <span class="n">bubble</span> <span class="n">right</span> <span class="n">now</span><span class="o">.</span>
+<span class="n">Compound</span> <span class="n">Score</span><span class="p">:</span> <span class="mf">0.6996</span>
+<span class="n">Sentiment</span> <span class="n">Label</span><span class="p">:</span> <span class="n">positive</span>
+</code></pre></div>
+
+<p><strong>Solution:</strong> We have decided to combine three sentiment analysis packages, namely NLTK, Afinn, and TextBlob. Despite their limitations in handling complex language patterns, the integration of these packages reduced the occurrence of errors, resulting in minimal impact on the overall results. Through our inspection, we have found that the majority of the analyses produce accurate outcomes. To further enhance the accuracy of sentiment analysis in financial texts, it is crucial to allocate sufficient time and resources for exploring deep learning methods.</p>
+<h1>Problem 4: Score = 0</h1>
+<p>The sentiment score data contains many zeroes. One scenario is when sentiment analysis fails to determine a clear emotional inclination for posts on a specific day, resulting in a neutral state. However, a more severe issue arises when there is a lack of data due to the absence of crawled data for popular posts on that day, leading to data gaps that can negatively impact subsequent training.</p>
+<p><strong>Solution:</strong> To address this problem, we employ interpolation using two methods. The first method is k-nearest neighbors (KNN):</p>
+<blockquote>
+<p>KNN is a simple and non-parametric machine learning algorithm that predicts the label or value of a new input based on the majority class or average value of its K closest training examples.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">KNNImputer</span>
+
+<span class="k">def</span> <span class="nf">consolidate</span><span class="p">(</span><span class="n">company</span><span class="p">,</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">weekend</span><span class="p">,</span> <span class="n">neighbor</span><span class="p">):</span>
+    <span class="c1"># Aggregate sentiment of posts by post date</span>
+    <span class="n">sentiment_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../Sentiment/&quot;</span> <span class="o">+</span> <span class="n">company</span> <span class="o">+</span> <span class="s2">&quot;_Sentiment.csv&quot;</span><span class="p">)</span>
+    <span class="n">sentiment_df_1</span> <span class="o">=</span> <span class="n">sentiment_df</span><span class="p">[[</span><span class="s1">&#39;date&#39;</span><span class="p">,</span><span class="s1">&#39;compound&#39;</span><span class="p">,</span><span class="s1">&#39;pos&#39;</span><span class="p">,</span><span class="s1">&#39;neg&#39;</span><span class="p">,</span><span class="s1">&#39;neu&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;date&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+    <span class="c1"># Merge sentiment data with stock data</span>
+    <span class="n">stock_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../stock_data/&quot;</span> <span class="o">+</span> <span class="n">symbol</span> <span class="o">+</span> <span class="s2">&quot;.csv&quot;</span><span class="p">)</span>
+    <span class="n">stock_df</span> <span class="o">=</span> <span class="n">stock_df</span><span class="p">[</span><span class="n">stock_df</span><span class="p">[</span><span class="s1">&#39;tic&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;GOOG&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">weekend</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+        <span class="n">consolidated</span> <span class="o">=</span> <span class="n">stock_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">sentiment_df_1</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;datadate&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Interpolate imaginary weekend stock price</span>
+        <span class="n">stock_df</span><span class="p">[</span><span class="s1">&#39;datadate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">stock_df</span><span class="p">[</span><span class="s1">&#39;datadate&#39;</span><span class="p">])</span>
+        <span class="n">start_date</span> <span class="o">=</span> <span class="n">stock_df</span><span class="p">[</span><span class="s1">&#39;datadate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+        <span class="n">stock_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;datadate&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">stock_df</span> <span class="o">=</span> <span class="n">stock_df</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">start_date</span><span class="p">)</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span>
+        <span class="n">stock_df</span> <span class="o">=</span> <span class="n">stock_df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">stock_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+        <span class="n">consolidated</span> <span class="o">=</span> <span class="n">stock_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">sentiment_df_1</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;datadate&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
+        <span class="n">consolidated</span><span class="p">[[</span><span class="s1">&#39;prccd&#39;</span><span class="p">,</span><span class="s1">&#39;prchd&#39;</span><span class="p">,</span><span class="s1">&#39;prcld&#39;</span><span class="p">,</span><span class="s1">&#39;prcod&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">consolidated</span><span class="p">[[</span><span class="s1">&#39;prccd&#39;</span><span class="p">,</span><span class="s1">&#39;prchd&#39;</span><span class="p">,</span><span class="s1">&#39;prcld&#39;</span><span class="p">,</span><span class="s1">&#39;prcod&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">limit_direction</span><span class="o">=</span><span class="s1">&#39;forward&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># K-nearest neighbor imputation</span>
+    <span class="n">consolidated</span><span class="p">[[</span><span class="s1">&#39;index&#39;</span><span class="p">,</span><span class="s1">&#39;compound&#39;</span><span class="p">,</span><span class="s1">&#39;pos&#39;</span><span class="p">,</span><span class="s1">&#39;neg&#39;</span><span class="p">,</span><span class="s1">&#39;neu&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">KNNImputer</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">neighbor</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">consolidated</span><span class="p">[[</span><span class="s1">&#39;compound&#39;</span><span class="p">,</span><span class="s1">&#39;pos&#39;</span><span class="p">,</span><span class="s1">&#39;neg&#39;</span><span class="p">,</span><span class="s1">&#39;neu&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">())</span>
+    <span class="n">consolidated</span> <span class="o">=</span> <span class="n">consolidated</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;gvkey&#39;</span><span class="p">,</span><span class="s1">&#39;tic&#39;</span><span class="p">,</span><span class="s1">&#39;iid&#39;</span><span class="p">,</span><span class="s1">&#39;index&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">consolidated</span>
+</code></pre></div>
+
+<p>The second method is momentum interpolation, referred to as "consolidate_pre." It involves extending the trend of sentiment scores from the preceding days to fill in the missing data. Overall, KNN performs better than "consolidate_pre," but it has a limitation. It may utilize data from subsequent periods that were unknown at the time. We can only assume that KNN can simulate such trends through machine learning.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="k">def</span> <span class="nf">consolidate_pre</span><span class="p">(</span><span class="n">company</span><span class="p">,</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">neighbor</span><span class="p">):</span>
+    <span class="c1"># Aggregate sentiment of posts by post date</span>
+    <span class="n">sentiment_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../Sentiment/&quot;</span> <span class="o">+</span> <span class="n">company</span> <span class="o">+</span> <span class="s2">&quot;_Sentiment.csv&quot;</span><span class="p">)</span>
+    <span class="n">stock_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../stock_data/&quot;</span> <span class="o">+</span> <span class="n">symbol</span> <span class="o">+</span> <span class="s2">&quot;.csv&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Remove all the data with ticker &#39;GOOGL&#39;</span>
+    <span class="k">if</span> <span class="n">symbol</span> <span class="o">==</span> <span class="s1">&#39;GOOG&#39;</span><span class="p">:</span>
+        <span class="n">stock_df</span> <span class="o">=</span> <span class="n">stock_df</span><span class="p">[</span><span class="n">stock_df</span><span class="p">[</span><span class="s1">&#39;tic&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;GOOG&#39;</span><span class="p">]</span>
+
+    <span class="c1">#interpolate imaginary weekend stock price</span>
+    <span class="n">stock_df</span><span class="p">[</span><span class="s1">&#39;datadate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">stock_df</span><span class="p">[</span><span class="s1">&#39;datadate&#39;</span><span class="p">])</span>
+    <span class="n">start_date</span> <span class="o">=</span> <span class="n">stock_df</span><span class="p">[</span><span class="s1">&#39;datadate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+    <span class="n">stock_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;datadate&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">stock_df</span> <span class="o">=</span> <span class="n">stock_df</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">start_date</span><span class="p">)</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span>
+    <span class="n">stock_df</span> <span class="o">=</span> <span class="n">stock_df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">stock_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+    <span class="c1"># Merge sentiment data with stock data</span>
+    <span class="n">merged_df</span> <span class="o">=</span> <span class="n">stock_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">sentiment_df</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;datadate&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
+
+    <span class="c1"># drop date and rename datadate to date</span>
+    <span class="n">merged_df</span> <span class="o">=</span> <span class="n">merged_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;date&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">merged_df</span> <span class="o">=</span> <span class="n">merged_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;datadate&#39;</span><span class="p">:</span> <span class="s1">&#39;date&#39;</span><span class="p">})</span>
+
+    <span class="c1"># reserve date, prccd, sentiment_score</span>
+    <span class="n">merged_df</span> <span class="o">=</span> <span class="n">merged_df</span><span class="p">[[</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;prcod&#39;</span><span class="p">,</span> <span class="s1">&#39;prccd&#39;</span><span class="p">,</span> <span class="s1">&#39;sentiment_score_NLTK&#39;</span><span class="p">,</span> <span class="s1">&#39;sentiment_score_Afinn&#39;</span><span class="p">,</span> <span class="s1">&#39;sentiment_score_Textblob&#39;</span><span class="p">]]</span>
+
+    <span class="c1">#interpolate missing stock price</span>
+    <span class="n">merged_df</span><span class="p">[[</span><span class="s1">&#39;prccd&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">merged_df</span><span class="p">[[</span><span class="s1">&#39;prccd&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">limit_direction</span><span class="o">=</span><span class="s1">&#39;forward&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">merged_df</span><span class="p">[[</span><span class="s1">&#39;prcod&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">merged_df</span><span class="p">[[</span><span class="s1">&#39;prcod&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">limit_direction</span><span class="o">=</span><span class="s1">&#39;forward&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># set NaN in sentiment_score to the pre value</span>
+    <span class="n">merged_df</span><span class="p">[</span><span class="s1">&#39;sentiment_score_NLTK&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">merged_df</span><span class="p">[</span><span class="s1">&#39;sentiment_score_NLTK&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;ffill&#39;</span><span class="p">)</span>
+    <span class="n">merged_df</span><span class="p">[</span><span class="s1">&#39;sentiment_score_Afinn&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">merged_df</span><span class="p">[</span><span class="s1">&#39;sentiment_score_Afinn&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;ffill&#39;</span><span class="p">)</span>
+    <span class="n">merged_df</span><span class="p">[</span><span class="s1">&#39;sentiment_score_Textblob&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">merged_df</span><span class="p">[</span><span class="s1">&#39;sentiment_score_Textblob&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;ffill&#39;</span><span class="p">)</span>
+
+    <span class="c1"># drop the NaN in sentiment_score</span>
+    <span class="n">merged_df</span> <span class="o">=</span> <span class="n">merged_df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;sentiment_score_NLTK&#39;</span><span class="p">])</span>
+
+    <span class="n">merged_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;../Consolidated/&quot;</span> <span class="o">+</span> <span class="n">company</span> <span class="o">+</span> <span class="s2">&quot;_pre.csv&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h1>Problem 5: Algorithm Selection</h1>
+<p>During the Binary Classifier Training, we initially explored four relatively simple algorithms: K-Nearest Neighbors (KNN), Logistic Regression, Support Vector Machine (SVM), and Naive Bayes: </p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">MultinomialNB</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
+
+<span class="k">def</span> <span class="nf">Learning</span><span class="p">(</span><span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span><span class="p">,</span> <span class="n">factor</span><span class="p">):</span>
+    <span class="n">val_results</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="c1">#Set training set and test set</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">train_df</span><span class="p">[[</span><span class="s1">&#39;sentiment_score_&#39;</span><span class="o">+</span><span class="n">factor</span><span class="p">]])</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;buy_or_sell&#39;</span><span class="p">])</span>
+    <span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1">#K-Nearest-Neighbors</span>
+    <span class="n">neigh</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">neigh</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span> 
+    <span class="n">neigh</span><span class="o">.</span><span class="n">score</span><span class="p">(</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+
+    <span class="n">neigh_cv</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">neigh</span><span class="p">,</span> <span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> 
+    <span class="n">val_results</span><span class="p">[</span><span class="s1">&#39;K-Nearest-Neighbors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">neigh_cv</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+
+    <span class="c1">#Logistic Regression</span>
+    <span class="n">logreg</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">66</span><span class="p">)</span>
+    <span class="n">logreg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">logreg</span><span class="o">.</span><span class="n">score</span><span class="p">(</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+
+    <span class="n">logreg_cv</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">logreg</span><span class="p">,</span> <span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">val_results</span><span class="p">[</span><span class="s1">&#39;Logistic Regression&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">logreg_cv</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+    <span class="c1">#Support Vector Machines</span>
+    <span class="n">svm_linear</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span> <span class="n">kernel</span> <span class="o">=</span> <span class="s1">&#39;sigmoid&#39;</span><span class="p">)</span>
+    <span class="n">svm_linear</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">svm_linear</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+
+    <span class="n">svm_linear_cv</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">svm_linear</span><span class="p">,</span> <span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">val_results</span><span class="p">[</span><span class="s1">&#39;Support Vector Machines&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">svm_linear_cv</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+    <span class="c1">#Naive Bayes</span>
+    <span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span> 
+    <span class="n">X_minmax</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
+
+    <span class="n">mnb</span> <span class="o">=</span> <span class="n">MultinomialNB</span><span class="p">()</span>
+
+    <span class="n">mnb_cv</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">mnb</span><span class="p">,</span> <span class="n">X_minmax</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># uscaled data accuracy same;  6588046192259676</span>
+    <span class="n">val_results</span><span class="p">[</span><span class="s1">&#39;Naive Bayes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mnb_cv</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</code></pre></div>
+
+<p>However, during the testing phase, we encountered issues with the logistic regression and Naive Bayes models. Specifically, when dealing with stocks like NVIDIA, which had a significantly higher number of days with price increases than decreases (as shown in the "buy_or_sell" column in the first graph, "1" indicating "increase" and "-1" indicating "decrease"), these models tended to classify all instances as "1" in the "Buy or Sell" results (as shown in the second graph). As a result, the models' predictions lacked meaningful differentiation, despite achieving relatively high accuracy.</p>
+<p><img alt="A" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/Financial-Language-Insights_02_A.png"></p>
+<p><img alt="B" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/Financial-Language-Insights_02_B.png"></p>
+<p><strong>Solution:</strong> We decided to exclude the logistic regression and Naive Bayes algorithms and incorporate more complex models, namely Decision Tree and Random Forest. These algorithms offer greater flexibility and are better suited to handle the intricacies of the dataset:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">tree</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span> 
+
+<span class="k">def</span> <span class="nf">Learning</span><span class="p">(</span><span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span><span class="p">,</span> <span class="n">factor</span><span class="p">):</span>
+    <span class="n">val_results</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="c1">#Set training set and test set</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">train_df</span><span class="p">[[</span><span class="s1">&#39;sentiment_score_&#39;</span><span class="o">+</span><span class="n">factor</span><span class="p">]])</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;buy_or_sell&#39;</span><span class="p">])</span>
+    <span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1">#Decision Tree</span>
+    <span class="n">dtc</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">dtc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span> 
+    <span class="n">val_results</span><span class="p">[</span><span class="s1">&#39;Decision Tree&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dtc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+
+    <span class="c1">#Random Forest</span>
+    <span class="n">forest_reg</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">forest_reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">val_results</span><span class="p">[</span><span class="s1">&#39;Random Forest&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">forest_reg</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span> <span class="c1"># 0.5</span>
+
+    <span class="k">return</span> <span class="n">val_results</span>
+</code></pre></div>
+
+<p><img alt="C" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/Financial-Language-Insights_02_C.png"></p>
+
+
+             
+ 
+            
+            
+            
+
+
+
+
+
+
+
+            <hr/>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2024-03-18T22:00:00+08:00">Mon 18 March 2024</time>
+            <h4>Category</h4>
+            <a class="category-link" href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/categories.html#progress-report-ref">Progress Report</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/tags.html#group-financial-language-insights-ref">Group Financial Language Insights
+                    <span class="superscript">2</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+    <a href="https://github.com/buehlmaier/MFIN7036-student-blog-2024-02" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="GitHub" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1B1817"/><path fill="#fff" d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+    </a>
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
+</html>
