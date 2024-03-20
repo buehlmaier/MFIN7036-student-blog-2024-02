@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/theme/css/custom.css" media="screen">
+
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+        <meta name="author" content="MFIN7036 Students 2024" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="Next Level Pro, Progress Report 2, " />
+
+<meta property="og:title" content="Thoughts Sharing on Web Scraping (by Group &#34;Next Level Pro&#34;) "/>
+<meta property="og:url" content="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/thoughts-sharing-on-web-scraping-by-group-next-level-pro.html" />
+<meta property="og:description" content="When it comes to text analysis, web scraping plays a crucial role in gathering a substantial amount of data from various online sources. Each website has its unique structure and requires us to employ a combination of foundational methods and flexible approaches to extract the desired information. In our previous …" />
+<meta property="og:site_name" content="MFIN7036 Student Blog 2024" />
+<meta property="og:article:author" content="MFIN7036 Students 2024" />
+<meta property="og:article:published_time" content="2024-03-19T00:00:00+08:00" />
+<meta name="twitter:title" content="Thoughts Sharing on Web Scraping (by Group &#34;Next Level Pro&#34;) ">
+<meta name="twitter:description" content="When it comes to text analysis, web scraping plays a crucial role in gathering a substantial amount of data from various online sources. Each website has its unique structure and requires us to employ a combination of foundational methods and flexible approaches to extract the desired information. In our previous …">
+
+        <title>Thoughts Sharing on Web Scraping (by Group &#34;Next Level Pro&#34;)  · MFIN7036 Student Blog 2024
+</title>
+        <link href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="MFIN7036 Student Blog 2024 - Full Atom Feed" />
+
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/"><span class=site-name>MFIN7036 Student Blog 2024</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       https://buehlmaier.github.io/MFIN7036-student-blog-2024-02
+                                    >Home</a>
+                                </li>
+                                <li ><a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/categories.html">Categories</a></li>
+                                <li ><a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/tags.html">Tags</a></li>
+                                <li ><a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/thoughts-sharing-on-web-scraping-by-group-next-level-pro.html">
+                Thoughts Sharing on Web Scraping (by Group "Next Level Pro")
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+            
+            <p>When it comes to text analysis, web scraping plays a crucial role in gathering a substantial amount of data from various online sources. Each website has its unique structure and requires us to employ a combination of foundational methods and flexible approaches to extract the desired information. In our previous blog post <a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/web-scraping-for-text-data-progress-update-by-group-next-level-pro.html">Web Scraping for Text Data &amp; Progress Update (by Group "Next Level Pro")</a>, we discussed some of these methods. However, as we delved deeper into our text analysis journey, we encountered new challenges that demanded innovative solutions. In this blog post, we aim to share our experiences, highlighting the problems we faced and the strategies we devised to overcome them. We hope that our insights will inspire and guide others who embark on similar endeavors.</p>
+<h1>Code Structure for Extracting Data by Selenium</h1>
+<p><em>Note: Before using the code provided in this section, make sure to import the required packages.</em></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.chrome.service</span> <span class="kn">import</span> <span class="n">Service</span>
+<span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">re</span>
+</code></pre></div>
+
+<p>For some websites, the Requests package may not be useful because of JavaScript. Selenium is good to get the same information as we inspect the page in our browser. Here we show an illustration about how to extract the final HTML version of the website using Selenium.</p>
+<p>When searching for Nvidia-related news on the CNN website, the manually opened page's URL is as follows : <em>https://edition.cnn.com/search?q=nvidia&amp;from=0&amp;size=10&amp;page=1&amp;sort=relevance&amp;types=all&amp;section=</em>. Based on this structure, by changing the "from" and "page" values, we can generate multiple page links and perform batch scraping using a for loop. The sample code is shown below:</p>
+<div class="highlight"><pre><span></span><code><span class="n">HTMLs</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">from_</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">service</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="n">executable_path</span><span class="o">=</span><span class="s2">&quot;C:\Program Files\Google\Chrome\Application\chromedriver-win64\chromedriver.exe&quot;</span><span class="p">)</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">ChromeOptions</span><span class="p">()</span>
+
+    <span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">service</span><span class="o">=</span><span class="n">service</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://edition.cnn.com/search?q=nvidia&amp;from=&quot;</span> <span class="o">+</span> <span class="n">from_</span> <span class="o">+</span> <span class="s2">&quot;&amp;size=10&amp;page=&quot;</span> <span class="o">+</span> <span class="n">page</span> <span class="o">+</span>\
+        <span class="s2">&quot;&amp;sort=relevance&amp;types=all&amp;section=&quot;</span>
+    <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">innerHTML</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="s2">&quot;return document.body.innerHTML&quot;</span><span class="p">)</span>
+    <span class="n">HTMLs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">innerHTML</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;completed&#39;</span><span class="p">)</span>
+
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>
+
+<span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">((</span><span class="n">end</span><span class="o">-</span><span class="n">start</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Then, with the 100 HTML content, by inspecting common structure and feature on every page, we can apply BeautifulSoup and regular expression to get the information we want with another loop.</p>
+<div class="highlight"><pre><span></span><code><span class="n">links</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">titles</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">dates</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">descriptions</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">html</span> <span class="ow">in</span> <span class="n">HTMLs</span><span class="p">:</span>
+    <span class="n">linkpattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;headline.*?data-zjs-href=&quot;([^&quot;]+)&quot;.*?data-zjs-component_position=&#39;</span>
+    <span class="n">links</span> <span class="o">+=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">linkpattern</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
+
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+    <span class="n">titles</span> <span class="o">+=</span> <span class="p">[</span><span class="n">title</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">title</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;div&gt;span.container__headline-text&#39;</span><span class="p">)]</span>
+
+    <span class="n">datepattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&gt;\s+(\w</span><span class="si">{3}</span><span class="s2"> \d</span><span class="si">{2}</span><span class="s2">, \d</span><span class="si">{4}</span><span class="s2">)\s+&lt;&quot;</span>
+    <span class="n">dates</span> <span class="o">+=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">datepattern</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
+
+    <span class="n">descriptions</span> <span class="o">+=</span> <span class="p">[</span><span class="n">description</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">description</span> <span class="ow">in</span> 
+                     <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span> <span class="o">=</span> <span class="s1">&#39;container__description container_list-images-with-description__description inline-placeholder&#39;</span><span class="p">)]</span>
+</code></pre></div>
+
+<h1>A Troubleshooting Guide for Scraping Yahoo Finance</h1>
+<p>In the previous blog, we explored a Python code that scrapes finance news articles from Yahoo Finance and performs sentiment analysis on them. However, we have encountered some issues while trying to collect new data and noticed that the output format for the data is incorrect. In this troubleshooting guide, we will try to address these issues and provide solutions to ensure accurate data retrieval and proper formatting.</p>
+<h2>Issue 1: Incorrect Date Format</h2>
+<p>The Problem is that the output data is displayed in the format of "x days ago" instead of the actual date. To ensure the correct date format, we followed these steps:</p>
+<ol>
+<li>
+<p>Extract the publication date of each article. Yahoo Finance typically provides the publication date within the article or as metadata in the HTML.</p>
+</li>
+<li>
+<p>Parse the date string using the appropriate date parsing library, such as datetime.strptime, to convert it into a datetime object.</p>
+</li>
+<li>
+<p>Format the datetime object into "YYYY-MM-DD" by using the strftime method. </p>
+</li>
+<li>
+<p>Replace the "x days ago" format in the output with the formatted date string.</p>
+</li>
+</ol>
+<p>By implementing these steps, we retrieve accurate and up-to-date data while ensuring the correct date format for your analysis.</p>
+<h2>Issue 2: Skipping Articles</h2>
+<p>When attempting to collect new data, the code skips all articles instead of retrieving them. 
+The output displayed “
+Skipping S&amp;P Futures5,114.50-14.50(-0.28%): article text not found
+Skipping Dow Futures38,643.00-113.00(-0.29%): article text not found
+Skipping Nasdaq Futures17,983.00-63.75(-0.35%): article text not found…”</p>
+<p>This discrepancy may be attributed to potential changes in the source code of Yahoo Finance. However, it is worth mentioning that we have successfully gathered over a thousand data from the last three months using alternative financial data platforms. For the sake of saving time, we have opted not to utilize data from Yahoo Finance.</p>
+<h1>Alternative API to retrieve data from Reuters</h1>
+<p>Further to our previous blog, we were able to find another API in <em>https://rapidapi.com/hub</em> to facilitate our web scraping task. The API can be called easily using <code>requests</code>. A simple code snippet is as below:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://reuters-business-and-financial-news.p.rapidapi.com/get-articles-by-keyword-name/Nvidia/1/20&quot;</span> <span class="c1">#Search results for Nvidia&#39;s News</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;X-RapidAPI-Key&quot;</span><span class="p">:</span> <span class="s2">&quot;8df536404dmshfb46d4239ecbbb9p16f69ejsn8fb103eaab51&quot;</span><span class="p">,</span> <span class="c1">#Generated from the API&#39;s website</span>
+    <span class="s2">&quot;X-RapidAPI-Host&quot;</span><span class="p">:</span> <span class="s2">&quot;reuters-business-and-financial-news.p.rapidapi.com&quot;</span>
+<span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+</code></pre></div>
+
+<p>The collected response is a json. We can then parse it using normal string manipulations.</p>
+<div class="highlight"><pre><span></span><code><span class="n">J</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="n">articlesName</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">articlesShortDescription</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">articlesDescription</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">publishedAt</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">J</span><span class="p">[</span><span class="s1">&#39;articles&#39;</span><span class="p">]:</span>
+    <span class="n">articlesName</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;articlesName&#39;</span><span class="p">])</span>
+    <span class="n">articlesShortDescription</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;articlesShortDescription&#39;</span><span class="p">])</span>
+    <span class="n">articlesDescription</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;articlesDescription&#39;</span><span class="p">])</span>
+    <span class="n">publishedAt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;publishedAt&#39;</span><span class="p">])</span>
+<span class="n">reuters1</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="n">articlesName</span><span class="p">,</span> <span class="s1">&#39;Short&#39;</span><span class="p">:</span><span class="n">articlesShortDescription</span><span class="p">,</span> <span class="s1">&#39;Text&#39;</span><span class="p">:</span><span class="n">articlesDescription</span><span class="p">,</span> <span class="s1">&#39;Date&#39;</span><span class="p">:</span><span class="n">publishedAt</span><span class="p">})</span>
+<span class="n">reuters1</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="Figure 1" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/NextLevelPro_02_01DFbefore.png"></p>
+<p>Here we noticed the <code>Text</code> and <code>Date</code> column consists of json string instead of the raw information. Therefore we need to further process the columns to obtain the required data.</p>
+<div class="highlight"><pre><span></span><code><span class="n">textdata</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">reuters1</span><span class="p">)):</span>
+    <span class="n">sss</span><span class="o">=</span><span class="n">J</span><span class="p">[</span><span class="s1">&#39;articles&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;articlesDescription&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">ssss</span><span class="o">=</span><span class="n">sss</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;},{&quot;</span><span class="p">)</span>
+    <span class="n">content</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ssss</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">t</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">ssss</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;}&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s1">&#39;content&#39;</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">t</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isupper</span><span class="p">():</span>
+                    <span class="n">content</span><span class="o">+=</span><span class="n">t</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot; &quot;</span>
+        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span><span class="nb">len</span><span class="p">(</span><span class="n">ssss</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">t</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="s2">&quot;{&quot;</span><span class="o">+</span><span class="n">ssss</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="k">if</span> <span class="s1">&#39;content&#39;</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">t</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isupper</span><span class="p">():</span>
+                    <span class="n">content</span><span class="o">+=</span><span class="n">t</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot; &quot;</span>
+        <span class="k">else</span><span class="p">:</span> 
+            <span class="n">t</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="s2">&quot;{&quot;</span><span class="o">+</span><span class="n">ssss</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;}&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s1">&#39;content&#39;</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">t</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isupper</span><span class="p">():</span>
+                    <span class="n">content</span><span class="o">+=</span><span class="n">t</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot; &quot;</span>
+    <span class="n">textdata</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+<span class="n">reuters1</span><span class="p">[</span><span class="s1">&#39;@text&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">textdata</span>
+<span class="n">datetimes</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">reuters1</span><span class="p">)):</span>
+    <span class="n">datetimes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reuters1</span><span class="o">.</span><span class="n">Date</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+<span class="n">reuters1</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">datetimes</span>
+<span class="n">reuters1</span><span class="p">[</span><span class="s1">&#39;@date&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">reuters1</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">date</span>
+<span class="n">reuters1</span><span class="o">=</span><span class="n">reuters1</span><span class="p">[[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;Short&#39;</span><span class="p">,</span> <span class="s1">&#39;@text&#39;</span><span class="p">,</span> <span class="s1">&#39;@date&#39;</span><span class="p">]]</span>
+<span class="n">reuters1</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="Figure 2" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/NextLevelPro_02_02DFafter.png"></p>
+<p>With the successful extraction of a substantial amount of data through web scraping, we are now well-equipped to proceed with sentiment analysis. By employing advanced techniques and algorithms, we can uncover patterns and trends that will contribute to our prediction of NVIDIA's volatility. We hope that these experience sharing on web scraping methods prove to be helpful for your endeavors and inspire new insights in your text analysis journey.</p>
+
+
+             
+ 
+            
+            
+            
+
+
+
+
+
+
+
+            <hr/>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2024-03-19T00:00:00+08:00">Tue 19 March 2024</time>
+            <h4>Category</h4>
+            <a class="category-link" href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/categories.html#progress-report-2-ref">Progress Report 2</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/tags.html#next-level-pro-ref">Next Level Pro
+                    <span class="superscript">2</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+    <a href="https://github.com/buehlmaier/MFIN7036-student-blog-2024-02" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="GitHub" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1B1817"/><path fill="#fff" d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+    </a>
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
+</html>
