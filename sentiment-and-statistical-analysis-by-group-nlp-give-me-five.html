@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/theme/css/custom.css" media="screen">
+
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+        <meta name="author" content="MFIN7036 Students 2024" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="Group NLP Give me Five, Progress Report, " />
+
+<meta property="og:title" content="Sentiment and Statistical Analysis (by Group &#34;NLP Give Me Five&#34;) "/>
+<meta property="og:url" content="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/sentiment-and-statistical-analysis-by-group-nlp-give-me-five.html" />
+<meta property="og:description" content="Problems before Sentiment Analysis In the first Blog, we conducted data collection, data observation, data preprocessing and wold cloud. Before we gave scores to FOMC statements, we found that the previous cleaned statements had better be several short sentences instead of single words and long sentences. Besides, we found that …" />
+<meta property="og:site_name" content="MFIN7036 Student Blog 2024" />
+<meta property="og:article:author" content="MFIN7036 Students 2024" />
+<meta property="og:article:published_time" content="2024-03-19T19:00:00+08:00" />
+<meta name="twitter:title" content="Sentiment and Statistical Analysis (by Group &#34;NLP Give Me Five&#34;) ">
+<meta name="twitter:description" content="Problems before Sentiment Analysis In the first Blog, we conducted data collection, data observation, data preprocessing and wold cloud. Before we gave scores to FOMC statements, we found that the previous cleaned statements had better be several short sentences instead of single words and long sentences. Besides, we found that …">
+
+        <title>Sentiment and Statistical Analysis (by Group &#34;NLP Give Me Five&#34;)  · MFIN7036 Student Blog 2024
+</title>
+        <link href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="MFIN7036 Student Blog 2024 - Full Atom Feed" />
+
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/"><span class=site-name>MFIN7036 Student Blog 2024</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       https://buehlmaier.github.io/MFIN7036-student-blog-2024-02
+                                    >Home</a>
+                                </li>
+                                <li ><a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/categories.html">Categories</a></li>
+                                <li ><a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/tags.html">Tags</a></li>
+                                <li ><a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/sentiment-and-statistical-analysis-by-group-nlp-give-me-five.html">
+                Sentiment and Statistical Analysis (by Group "NLP Give Me Five")
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+            
+            <h2>Problems before Sentiment Analysis</h2>
+<p>In the first Blog, we conducted data collection, data observation, data preprocessing and wold cloud. Before we gave scores to FOMC statements, we found that the previous cleaned statements had better be several short sentences instead of single words and long sentences. Besides, we found that some useless sentences, such as the ones beginning with "please email" or "voting monetary", appeared a lot. In the case, we further cleaned the data.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">preprocess_text</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="c1"># transfer to lowercase</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="c1">#Remove names</span>
+    <span class="n">nlp</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;en_core_web_sm&#39;</span><span class="p">)</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">token</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">doc</span> <span class="k">if</span> <span class="n">token</span><span class="o">.</span><span class="n">ent_type_</span> <span class="o">!=</span> <span class="s1">&#39;PERSON&#39;</span><span class="p">])</span>
+    <span class="c1">#Remove URLs</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;http\S+|www\S+|https\S+&#39;</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="n">text</span><span class="p">)</span>
+    <span class="c1">#Remove email address</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;([\w\.\-\_]+@[\w\.\-\_]+)&#39;</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="n">text</span><span class="p">)</span>
+    <span class="c1">#Remove phone numbers</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;(\d+)&#39;</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="n">text</span><span class="p">)</span>
+    <span class="c1"># Remove punctuation (keep sentence segmentation symbols)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^\w\s,;:.?!]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="n">sentences</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[;,:.?!]&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="c1"># token, stop words, remove specific sentences</span>
+    <span class="n">processed_sentences</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">less4word</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">joinword</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+    <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span>
+        <span class="n">j</span><span class="o">=</span><span class="n">sentence</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+        <span class="n">tokens</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+        <span class="n">processed_tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">lemmatizer</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">tokens</span> <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">]</span>
+        <span class="n">processed_sentence</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">processed_tokens</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">processed_sentence</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;please email&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">processed_sentence</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;voting monetary&#39;</span><span class="p">):</span>  <span class="c1"># remove specific sentences</span>
+            <span class="n">processed_sentences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">processed_sentence</span><span class="p">)</span>
+    <span class="k">while</span> <span class="s1">&#39;&#39;</span> <span class="ow">in</span> <span class="n">processed_sentences</span><span class="p">:</span>  <span class="c1">#ensure no empty list</span>
+        <span class="n">processed_sentences</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>  
+    <span class="k">return</span> <span class="n">processed_sentences</span>
+</code></pre></div>
+
+<h2>Sentiment Analysis</h2>
+<p>We performed sentiment analysis using the TextBlob library and the LM dictionary from pysentiment2. TextBlob is a powerful NLP library that offers various functionalities, including sentiment analysis. The default dictionary of TextBlob is a general dictionary from pattern. The following code was used to calculate the sentiment scores of the sentence:</p>
+<div class="highlight"><pre><span></span><code><span class="n">score</span> <span class="o">=</span> <span class="n">TextBlob</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span><span class="o">.</span><span class="n">polarity</span>
+</code></pre></div>
+
+<p>Since we can customize the analyzer of TextBlob, we also utilized a pre-trained Naïve Bayes analyzer from NLTK to perform machine learning. 
+Please note that if you try to switch to the NaiveBayesAnalyzer directly as the following code, TextBlob would be extremely slow:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Score</span> <span class="o">=</span> <span class="n">TextBlob</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="n">Analyzer</span> <span class="o">=</span> <span class="n">NaiveBayesAnalyzer</span><span class="p">())</span><span class="o">.</span><span class="n">sentiment</span><span class="o">.</span><span class="n">p_pos</span>
+</code></pre></div>
+
+<p>The reason is that Textblob will train the analyzer internally before each run. To address this, we use Blobber from TextBlob to avoid training before each run:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">textblob</span> <span class="kn">import</span> <span class="n">Blobber</span>
+<span class="kn">from</span> <span class="nn">textblob.sentiments</span> <span class="kn">import</span> <span class="n">NaiveBayesAnalyzer</span>
+<span class="n">tbnb</span> <span class="o">=</span> <span class="n">Blobber</span><span class="p">(</span><span class="n">analyzer</span><span class="o">=</span><span class="n">NaiveBayesAnalyzer</span><span class="p">())</span>
+<span class="n">score</span> <span class="o">=</span> <span class="n">tbnb</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span><span class="o">.</span><span class="n">sentiment</span><span class="o">.</span><span class="n">p_pos</span>
+</code></pre></div>
+
+<p>Another thing to mention, please use tbnb(sentence).sentiment.p_pos when you use the NaiveBayesAnalyzer instead of tbnb(sentence).polarity otherwise NaiveBayesAnalyzer would not work and you will get the same result as the default TextBlob. 
+Additionally, we incorporated the LM dictionary, which is a famous dictionary in finance. It extends a common baseline dictionary to include words appearing in financial documents such as 10-K fillings and earning calls. For this analysis, we focused on calculating the polarity of the word. The first challenge we faced was there were so many place and position names in the statement. As they were useless for sentiment analysis, we excluded them from the calculations. </p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">remove_short_sentences</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Remove sentences with length less than 3</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">])):</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">sentence</span> <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">sentence</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">]</span>
+<span class="k">return</span> <span class="n">df</span>
+</code></pre></div>
+
+<p>To determine the sentiment score of each statement, we computed their sentences’ scores first and then took the average. The deliverables here showcase our data structure. The first two column are the date and content of each statement. The third to fifth column displayed the sentiment scores we calculated.</p>
+<p><img alt="Sentiment Scores" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/NLPGiveMeFive_02_image-sentiment_scores.png"></p>
+<h2>Statistical Analysis</h2>
+<p>We only choose the sentiment score calculated using Loughran and McDonald dictionary method in this statistical analysis, which range is from -1 to 1. 
+We construct senti_ploar column to see whether the score is positive or negative and event_indicator column to see whether the statement is released at the date. Then merge the factor data with daily 10-year US government bond yield (TNX). One thing should be noticed here is that the Adj Close data of TNX we download from Yahoo Finance is exactly the return rather than price. The other problem is that we do not have daily score data, because they only happen in specific date. Therefore, we set 0 for missing values for those missing data days, then lag these factor data and run linear regression on the daily 10-year government bond yield. Therefore, we could get the beta of sentiment score to see whether it can affect the US government bond yield.</p>
+<div class="highlight"><pre><span></span><code><span class="n">diff_data</span><span class="p">[</span><span class="s1">&#39;yield_diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">diff_data</span><span class="p">[</span><span class="n">yield_name</span><span class="p">]</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span>
+<span class="n">shift_lag</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">diff_data</span><span class="p">[</span><span class="s1">&#39;score_lag&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">diff_data</span><span class="p">[</span><span class="n">score_name</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">shift_lag</span><span class="p">)</span>
+<span class="n">diff_data</span><span class="p">[</span><span class="s1">&#39;polar_lag&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">diff_data</span><span class="p">[</span><span class="s1">&#39;senti_polar&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">shift_lag</span><span class="p">)</span>
+<span class="n">diff_data</span><span class="p">[</span><span class="s1">&#39;event_lag&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">diff_data</span><span class="p">[</span><span class="s1">&#39;event_indicator&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">shift_lag</span><span class="p">)</span>
+<span class="n">diff_data</span> <span class="o">=</span> <span class="n">diff_data</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">X_name</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;score_lag&#39;</span><span class="p">,</span><span class="s1">&#39;polar_lag&#39;</span><span class="p">,</span><span class="s1">&#39;event_lag&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">diff_data</span><span class="p">[</span><span class="n">X_name</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">diff_data</span><span class="p">[</span><span class="n">yield_name</span><span class="p">]</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</code></pre></div>
+
+<p>However, we may wonder that set a window period may help to improve the estimation. Therefore, we set event window from 5 calendar days before the release of statement to 5 calendar days after. 
+Moreover, during the presentation, Dr. Buehlmaier suggested that we should consider about trading strategy. Therefore, we find iShares U.S. Treasury Bond ETF (GOVT), which investing at least 90% of its asset in US Treasury securities. We believe this ETF may have homogonous change with the change of US Treasury bonds. Then we run regression by only sentiment scores on the 10-year US Treasury bonds and ETF respectively. We only get significant beta of sentiment scores when run regression on the log return of ETF with event window. Furthermore,  we run regression on the standard deviation of their window return. The result gives us significant beta, which indicates that sentiment score can bring effects to the volatility of both TNX and GOVT.</p>
+<div class="highlight"><pre><span></span><code><span class="n">cum_abnormal</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">df_merge</span><span class="p">[</span><span class="n">yield_name</span><span class="p">]</span> <span class="o">-</span> <span class="n">df_merge</span><span class="p">[</span><span class="s1">&#39;yield_predict&#39;</span><span class="p">])</span>
+<span class="n">idx_event</span> <span class="o">=</span> <span class="n">slice_event</span><span class="p">[</span><span class="n">slice_event</span><span class="p">[</span><span class="s1">&#39;event_indicator&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">slice_before</span> <span class="o">=</span> <span class="n">slice_event</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="n">idx_event</span><span class="o">+</span><span class="mi">1</span><span class="p">,:]</span>
+<span class="n">slice_after</span> <span class="o">=</span> <span class="n">slice_event</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">idx_event</span><span class="o">+</span><span class="mi">1</span><span class="p">:,:]</span>
+<span class="n">twoperiods_diff</span> <span class="o">=</span> <span class="n">slice_after</span><span class="p">[</span><span class="s1">&#39;log_ret&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">-</span> <span class="n">slice_before</span><span class="p">[</span><span class="s1">&#39;log_ret&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="c1"># difference of log ret of ETF on two periods</span>
+<span class="n">yield_std</span> <span class="o">=</span> <span class="n">slice_event</span><span class="p">[</span><span class="n">yield_name</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">logret_std</span> <span class="o">=</span> <span class="n">slice_event</span><span class="p">[</span><span class="s1">&#39;log_ret&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">df_temp</span> <span class="o">=</span> <span class="n">df_merge</span><span class="p">[</span><span class="n">df_merge</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">date</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="n">yield_name</span><span class="p">,</span><span class="s1">&#39;yield_predict&#39;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df_temp</span><span class="p">[</span><span class="s1">&#39;cum_abnormal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cum_abnormal</span>
+<span class="n">df_temp</span><span class="p">[</span><span class="s1">&#39;twoperiods_diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">twoperiods_diff</span>
+<span class="n">df_temp</span><span class="p">[</span><span class="s1">&#39;twoyields_diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">twoyields_diff</span>
+<span class="n">df_temp</span><span class="p">[</span><span class="s1">&#39;yield_std&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">yield_std</span>
+<span class="n">df_temp</span><span class="p">[</span><span class="s1">&#39;logret_std&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">logret_std</span>
+<span class="n">df_abnormal</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_abnormal</span><span class="p">,</span><span class="n">df_temp</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">X_name</span> <span class="o">=</span> <span class="p">[</span><span class="n">score_name</span><span class="p">]</span> <span class="c1">#,&#39;event_indicator&#39;,&#39;senti_polar&#39; ,&#39;FFR&#39;,&#39;FG&#39;,&#39;LSAP&#39;</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">df_abnormal</span><span class="p">[</span><span class="n">X_name</span><span class="p">])</span> 
+<span class="n">y</span> <span class="o">=</span> <span class="n">df_abnormal</span><span class="p">[</span><span class="s1">&#39;yield_std&#39;</span><span class="p">]</span><span class="c1">#&#39;cum_abnormal&#39; &#39;twoperiods_diff&#39; &#39;logret_std&#39;</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</code></pre></div>
+
+<p>Then, a problem of one factor analysis is lack of other factors' combination, so we tried to find some other factors which can be combined to discuss. We first look through the blog of <a href="https://buehlmaier.github.io/MFIN7036-student-blog-2022-02/forecasting-interest-rate-trends-based-on-fomc-speeches-group-professional-team.html">previous year</a> which is related to FOMC documents, they considered about some macroeconomics effects such as GDP, while they did not state clearly where they obtained the data. Due to the limitation of data source, we then decide to look for other factors. 
+Gorodnichenko et al.(2023) used factors FFR, FG, LSAP investigated by Swanson (2021) to observe how voice tone of press conference after FOMC meeting will affect the bond market performance. We try to use these factors in our analysis process to see whether they can help. Unfortunately, the answer is no! Even though some factors have significant beta, but our sentiment scores become insignificant in this case. This may be because sentiment score is explained by these factors. </p>
+<h2>Limitations</h2>
+<ol>
+<li>
+<p>Methods of Sentiment Scores: Lack of Contextual and Emotional Depth - Relying on dictionaries for sentiment analysis may not only miss the contextual meaning behind words but also overlook the emotional tone or intensity conveyed. Financial texts, especially those from institutions like the FOMC, often use nuanced language that can have a substantial impact on market interpretation and reaction.  The emotional valence attached to certain terms or phrases could significantly influence investor sentiment and market dynamics, which dictionary-based methods may fail to capture.</p>
+</li>
+<li>
+<p>Temporal Dynamics Ignored: The current analysis may not adequately account for the temporal dynamics between FOMC statement releases and changes in bond yields. The impact of statements on yields could vary over time, influenced by external economic events, market sentiment, or changes in monetary policy effectiveness.</p>
+</li>
+<li>
+<p>Linear Models Limitation: If the study primarily relies on linear regression models, this could be a significant limitation. Financial markets are complex and influenced by a multitude of non-linear relationships. Linear models might not capture these complexities adequately, potentially oversimplifying the analysis and leading to inaccurate conclusions.</p>
+</li>
+<li>
+<p>Overlooked Semantic Nuances:** Even with advanced text preprocessing, the sentiment analysis could miss out on semantic nuances such as irony, sarcasm, or technical jargon specific to financial contexts. This limitation could lead to misinterpretation of the sentiment conveyed in FOMC statements.</p>
+</li>
+</ol>
+<p>By addressing these limitations, the analysis could achieve a more nuanced and accurate understanding of how FOMC statements' sentiments affect government bond yields. We will give detailed suggestions for limitations in the final report. </p>
+
+
+             
+ 
+            
+            
+            
+
+
+
+
+
+
+
+            <hr/>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2024-03-19T19:00:00+08:00">Tue 19 March 2024</time>
+            <h4>Category</h4>
+            <a class="category-link" href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/categories.html#progress-report-ref">Progress Report</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/tags.html#group-nlp-give-me-five-ref">Group NLP Give me Five
+                    <span class="superscript">1</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+    <a href="https://github.com/buehlmaier/MFIN7036-student-blog-2024-02" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="GitHub" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1B1817"/><path fill="#fff" d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+    </a>
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
+</html>
