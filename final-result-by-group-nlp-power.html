@@ -15,18 +15,18 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="Group NLP Power, Progress Report, " />
+<meta name="keywords" content="Group NLP Power, Result Report, " />
 
-<meta property="og:title" content="Understand transformer (by Group &#34;NLP Power&#34;) "/>
-<meta property="og:url" content="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/understand-transformer-by-group-nlp-power.html" />
-<meta property="og:description" content="Understand Transformer and Bert Model 1.1 Preliminary Concepts Word Embedding Recurrent Neural Network Back Propagation Cosine Similarly 1.2 Attention is all you need The key idea of the Transformer model and the Bert, or Bidirectional Encoder Representations from Transformers, is the attention structure. The structure is designed to …" />
+<meta property="og:title" content="Final Result (by Group &#34;NLP Power&#34;) "/>
+<meta property="og:url" content="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/final-result-by-group-nlp-power.html" />
+<meta property="og:description" content="Sentiment Score We have rated the cleaned MD&amp;A and Risk Factor, obtaining positive, neutral, and negative scores respectively. Our Sentiment Score is based on FinBert, which in turn is based on Bert. FinBert is an open-source, pre-trained NLP model that has been specifically trained on Financial Data, and it …" />
 <meta property="og:site_name" content="MFIN7036 Student Blog 2024" />
 <meta property="og:article:author" content="MFIN7036 Students 2024" />
-<meta property="og:article:published_time" content="2024-02-24T00:00:00+08:00" />
-<meta name="twitter:title" content="Understand transformer (by Group &#34;NLP Power&#34;) ">
-<meta name="twitter:description" content="Understand Transformer and Bert Model 1.1 Preliminary Concepts Word Embedding Recurrent Neural Network Back Propagation Cosine Similarly 1.2 Attention is all you need The key idea of the Transformer model and the Bert, or Bidirectional Encoder Representations from Transformers, is the attention structure. The structure is designed to …">
+<meta property="og:article:published_time" content="2024-03-19T00:00:00+08:00" />
+<meta name="twitter:title" content="Final Result (by Group &#34;NLP Power&#34;) ">
+<meta name="twitter:description" content="Sentiment Score We have rated the cleaned MD&amp;A and Risk Factor, obtaining positive, neutral, and negative scores respectively. Our Sentiment Score is based on FinBert, which in turn is based on Bert. FinBert is an open-source, pre-trained NLP model that has been specifically trained on Financial Data, and it …">
 
-        <title>Understand transformer (by Group &#34;NLP Power&#34;)  · MFIN7036 Student Blog 2024
+        <title>Final Result (by Group &#34;NLP Power&#34;)  · MFIN7036 Student Blog 2024
 </title>
         <link href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="MFIN7036 Student Blog 2024 - Full Atom Feed" />
 
@@ -68,8 +68,8 @@
 <div class="row-fluid">
     <header class="page-header span10 offset2">
         <h1>
-            <a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/understand-transformer-by-group-nlp-power.html">
-                Understand transformer (by Group "NLP Power")
+            <a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/final-result-by-group-nlp-power.html">
+                Final Result (by Group "NLP Power")
             </a>
         </h1>
     </header>
@@ -78,87 +78,59 @@
 <div class="row-fluid">
         <div class="span8 offset2 article-content">
             
-            <p><img alt="Picture showing Powell" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/NLP-Power_02_image-1.png"></p>
-<h2>Understand Transformer and Bert Model</h2>
-<h3>1.1 Preliminary Concepts</h3>
-<ul>
-<li>Word Embedding    </li>
-<li>Recurrent Neural Network </li>
-<li>Back Propagation</li>
-<li>Cosine Similarly </li>
-</ul>
-<h3>1.2 Attention is all you need</h3>
-<p>The key idea of the Transformer model and the Bert, or Bidirectional Encoder Representations from Transformers, is the attention structure. The structure is designed to alleviate the information losses in the hidden layers of the recurrent neural network by inspecting the similarities, or the importance of a work token relative to the rest of the materials and itself. This structure enhances the predictability and allows the concurrent calculation in GPU.</p>
-<p><img alt="Picture showing Powell" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/NLP-Power_02_image-2.png"></p>
-<p>Structure: </p>
-<p>For one stack:</p>
-<p>Query, Key, and Value:</p>
-<p>This set is constructed by the sum of the multiple results of the residual connection, seen in section 1.3, assigned with weights and biases. </p>
-<p>The set of Query, Key, and Value is generated by the same way with different weights and biases from the results of the residual connection.</p>
-<p>The idea is the following: </p>
+            <h2>Sentiment Score</h2>
+<p>We have rated the cleaned MD&amp;A and Risk Factor, obtaining positive, neutral, and negative scores respectively. Our Sentiment Score is based on FinBert, which in turn is based on Bert. FinBert is an open-source, pre-trained NLP model that has been specifically trained on Financial Data, and it outperforms almost all other NLP techniques for financial sentiment analysis.</p>
+<p><img alt="Picture showing Powell" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/NLP-Power_04_image-1.png">
+FinBert principle</p>
+<p><img alt="Picture showing Powell" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/NLP-Power_04_image-2.png">
+This figure shows an example based on the Sentiment Score of MD&amp;A and Risk Factor.</p>
+<p><img alt="Picture showing Powell" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/NLP-Power_04_image-3.png">
+For MD&amp;A: We have visualized all the results and found that the scores for positive and negative sentiment score are mostly close to 0, with only the neutral scores being higher. This means that most of the text has been rated as neutral.</p>
+<p><img alt="Picture showing Powell" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/NLP-Power_04_image-4.png">
+For Risk Factors: The results are almost identical to those of MD&amp;A, with the majority of sentiment score being neutral.</p>
+<h2>Neural Network</h2>
+<p>We utilized the Neural Network Package from Tensorflow for our analysis. The input features for our model included the Sentiment Score from the MD&amp;A and Risk Factor, as well as the industry class. The input label was the Sigma of the Report Date Excess Return.</p>
+<p>Our hypothesis was that a higher positive (or higher negative) Sentiment Score would correspond to a higher (or lower) Report Date Excess Return. We also hypothesized that the industry class could act as a magnifier. For instance, a tech company with higher volatility could potentially transfer this to return. We considered trying Beta for this analysis.</p>
+<p>We initially tried a Neural Network Classifier, which returned an accuracy of 80%. However, it predicted a large number of them as Neutral.</p>
+<p>Upon further analysis, we discovered the effect of an imbalanced dataset on our results. To address this, we implemented solutions such as Synthetic Minority Over-sampling Technique (SMOTE) and Class Weighting. However, these methods only returned an accuracy of 40%</p>
+<h2>Portfolio</h2>
+<p>We have created an overall histogram for the period from 2008 to 2024.</p>
+<p><img alt="Picture showing Powell" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/NLP-Power_04_image-5.png"></p>
+<p>In our analysis, we created a new variable using the formula [(Positive - Negative) + (Positive - Neutral)] / 2. We then ranked these values into 10 bins.</p>
+<p>Our strategy involved going long on the stocks in the higher bins and shorting the stocks in the lower bins. For instance, we would go long on the stocks in the 6th bin and short the stocks in the 1st bin.</p>
+<p><img alt="Picture showing Powell" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/NLP-Power_04_image-6.png"></p>
+<p>The final constructed portfolio returns</p>
+<h2>Possible Upcoming Improvement</h2>
+<p>There are two major downsides to our approach:</p>
 <ol>
 <li>
-<p>The similarities between the query of the token and the keys of all tokens are inspected (ex. By the cosine similarity or dot product)</p>
+<p>The distribution of the bins is not ascending. This means that the bin rankings do not necessarily correspond to an increasing order of stock performance.</p>
 </li>
 <li>
-<p>This similarity is converted to 0-1 as percentage by SoftMax function </p>
-</li>
-<li>
-<p>The value is modified by the percentage mentioned above to represent the importance of the word relative to the rest of the article.</p>
-<p>This structure is applied three times in Transformer model: Encoder, Decoder, and the connection between Encoder and Decoder.</p>
+<p>Our trading strategy is based on non-frequent Earnings Reports, while our research is conducted on a daily return basis. This discrepancy could potentially impact the effectiveness and accuracy of our strategy.</p>
 </li>
 </ol>
-<p>For multiple stacks, the result is just a concat of the stacks.</p>
-<p><img alt="Picture showing Powell" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/NLP-Power_02_image-3.png"></p>
-<h3>1.3 Encoder</h3>
-<p>Encoder is an essential idea in machine learning, describing the process of mapping the inputs into the dimensions we want while keeping essential features and patterns to further process.</p>
-<p>In transformer model here, the encoder workflow is the following:
-1.  The numerical form of the text token from Word Embedding is taken as the information of the words.</p>
+<p>Moving forward, we have identified several areas for improvement:</p>
 <ol>
 <li>
-<p>The positional encoding is added up to the input word embedding. The positional encoding is a representation of the information of the position of the word in a sentence of in a document. Ex. One way of doing this is to use sin or cos function to transform to a numeric from.</p>
+<p>Continue Proper Documentation: We will maintain a rigorous documentation process to ensure that all steps and decisions are well-recorded and transparent.</p>
 </li>
 <li>
-<p>The result of the sum of positional encoding and word embedding is the input values for the Attention structure to generate Query, Key, and Value, as stated above.</p>
+<p>Collect More Frequent Data: We aim to gather data at more frequent intervals to capture more granular trends and patterns.</p>
 </li>
 <li>
-<p>The output of the attention structure is then processed by Residual connection, seen below, to provide finial results of the encoder part. Let’s call this result as residual-encoder.</p>
+<p>Improve Text Pre-processing: We will enhance our text pre-processing techniques to ensure that our NLP models can extract the most meaningful insights from the text data.</p>
+</li>
+<li>
+<p>Hyper-Parameter Testing in Models: We will conduct extensive hyper-parameter testing to optimize our models and improve their predictive accuracy.</p>
+</li>
+<li>
+<p>Test Different Timeframe Trading Strategies: We will experiment with trading strategies over different timeframes to identify the most effective approach.</p>
+</li>
+<li>
+<p>By focusing on these areas, we hope to refine our methodology and improve the accuracy of our predictions.</p>
 </li>
 </ol>
-<p><img alt="Picture showing Powell" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/NLP-Power_02_image-4.png"></p>
-<h4>1.3 Residual connection:</h4>
-<p>The idea of the residual connection is to emphasis the information contained before the convolution process. This idea commonly appears in many variations of the neural network models,  such as in image processing, the RintaNet, FPN structures. </p>
-<p>Here, the structure is designed by adding up the word embedding and positional embedding. </p>
-<p>After the Residual connection, a new set of the key values (we may call it key-encoder), is generated based on residual-encoder values. Theses key values are used later to represent the importance or correlation between the encoders and decoders.</p>
-<p><img alt="Picture showing Powell" src="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/images/NLP-Power_02_image-5.png"></p>
-<h3>1.4 decoder</h3>
-<ol>
-<li>
-<p>Decoder starts with the target texts and follows the same structure as the Encoder. We can name the output of the residual connection as the residual-decoder. </p>
-</li>
-<li>
-<p>The new set of the Query values are generated by the residual-decoder values as the same way, (but different weights and bias) in attention structure. </p>
-</li>
-<li>
-<p>The similarity or the correlation between the key values from the residual-encoders and the Query values from the residual-decoders are calculated by the cosine similarity method, or dot product.</p>
-</li>
-<li>
-<p>This similarity modify the new Values and eventually predicts the output, after the softmax function.  </p>
-</li>
-</ol>
-<h3>1.5 Bert and the pre trained model – Finbert</h3>
-<p>Bert model, or Bidirectional Encoder Representations from Transformers only takes the encoder part of the Transformer structure, while the Chatgpt only takes the decoder part of the transformer structure. The Bert model can be downloaded in Github via: https://github.com/google-research/bert?tab=readme-ov-file. The Bert model highlights the functions: mask language model to predict mask words, and the Next Sentence Prediction to predict the sequence of the sentences.</p>
-<p>One popular pre trained model of Bert in financial field is Finbert. It has 838,720 Downloads last month (2024.1). This model is available via: https://huggingface.co/ProsusAI/finbert and https://github.com/ProsusAI/finBERT?tab=readme-ov-file. </p>
-<h3>Papers and Resources:</h3>
-<p>[1]. Vaswani, Ashish, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Lukasz Kaiser, and Illia Polosukhin. 2017. “Attention Is All You Need.” ArXiv.org. June 12, 2017. https://arxiv.org/abs/1706.03762.</p>
-<p>[2]. CMU. Accessed February 23, 2024. 
-http://www.cs.cmu.edu/~02251/recitations/recitation_deep_learning.pdf.</p>
-<p>[3]. Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2018. “BERT: Pre-Training of Deep Bidirectional Transformers for Language 
-Understanding.” ArXiv.org. October 11, 2018. https://arxiv.org/abs/1810.04805.</p>
-<p>[4]. “Google-Research/Bert.” 2024. GitHub. January 23, 2024. https://github.com/google-research/bert?tab=readme-ov-file.</p>
-<p>[5]. “ProsusAI/Finbert · Hugging Face.” n.d. Huggingface.co. https://huggingface.co/ProsusAI/finbert.</p>
-<p>[6]. “ProsusAI/FinBERT.” 2024. GitHub. February 22, 2024. https://github.com/ProsusAI/finBERT?tab=readme-ov-file.</p>
-<p>[7]. “Transformer Neural Networks, ChatGPT’s Foundation, Clearly Explained!!!” n.d. Www.youtube.com. Accessed February 23, 2024. https://www.youtube.com/watch?v=zxQyTK8quyY&amp;list=WL&amp;index=2.</p>
 
 
              
@@ -177,9 +149,9 @@ Understanding.” ArXiv.org. October 11, 2018. https://arxiv.org/abs/1810.04805.
         </div>
         <section id="article-sidebar" class="span2">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2024-02-24T00:00:00+08:00">Sat 24 February 2024</time>
+            <time itemprop="dateCreated" datetime="2024-03-19T00:00:00+08:00">Tue 19 March 2024</time>
             <h4>Category</h4>
-            <a class="category-link" href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/categories.html#progress-report-ref">Progress Report</a>
+            <a class="category-link" href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/categories.html#result-report-ref">Result Report</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://buehlmaier.github.io/MFIN7036-student-blog-2024-02/tags.html#group-nlp-power-ref">Group NLP Power
